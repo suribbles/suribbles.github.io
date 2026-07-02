@@ -33,8 +33,8 @@ suribbles.github.io/
 
 ### 1. **Update Contact Information**
 In `index.html`, find the Contact section and update:
-- LinkedIn URL: `https://linkedin.com` → your LinkedIn
-- Email: `mailto:your.email@example.com` → your actual email
+- LinkedIn URL: `https://www.linkedin.com/in/suribbles/` (already set)
+- Email: `mailto:surendra.manekar@gmail.com` (already set)
 
 ### 2. **Update Project Links**
 Each project card has a GitHub link. Update these URLs:

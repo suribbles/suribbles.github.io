@@ -200,7 +200,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
-const F = 'assets/framer/';
+const F = 'assets/';
 const I = (id, alt) => ({ src: F + id, alt: alt || '' });
 const img1 = (...list) => ({ isImgs1: true, list });
 const imgs = (...list) => ({ isImgsGrid: true, list });
@@ -233,10 +233,10 @@ const CASES = {
       cost: "Some AI-specific attributes, such as drift and token usage, didn't fit cleanly into the existing structure. We extended it with a dedicated telemetry layer." }],
     role: ['Principal Designer / UX Design Lead'],
     blocks: [
-      imgs(I('c2IU5ajULpRZyjHLLwGdy98TSI.jpg', 'AI Control Tower keynote'), I('bXI14eekuzv3wWBQKX9O2T37uc.jpg', 'AI Control Tower overview')),
+      imgs(I('aict-keynote.jpg', 'AI Control Tower keynote'), I('aict-overview.jpg', 'AI Control Tower overview')),
       P('ServiceNow AI Control Tower (AICT) ', 'is a centralized governance, management, and compliance platform built natively on the Now Platform. It acts like an "air traffic controller" for enterprise artificial intelligence, allowing organizations to discover, secure, observe, and measure all AI models, agents, prompts, and datasets from a single pane of glass.'),
       { isChallenge: true, text: "Enterprise AI is expanding faster than IT can track, leading to fragmented 'Shadow AI,' compliance risks, and untracked token consumption. The challenge was to design an end-to-end management system that could map all AI usage — including unsanctioned tools, models, or features used by employees or teams without formal approval, visibility, or oversight." },
-      imgs(I('EXPMcn9b4JRTSJdSiT3IjG1pjps.jpg', 'Mind mapping'), I('R3iNuqXFUbFb2jv2cMpecXk1blE.jpg', 'Initial idea sketching'), I('rN40Jh1ZBs9MaTwrJCvsPSphUg.jpg', 'AI Control Tower — workshop output')),
+      imgs(I('aict-mind-mapping.jpg', 'Mind mapping'), I('aict-idea-sketching.jpg', 'Initial idea sketching'), I('aict-workshop-output.jpg', 'AI Control Tower — workshop output')),
       P('', 'Designing a governance tool for a sprawling AI ecosystem required untangling dense technical dependencies before drawing a single frame. I led design thinking workshops with PMs, Engineering, and Legal SMEs to translate ideas, requirements & compliance guidelines into actionable UI items and establish a shared mental model.'),
       L('Architecting the System', 'Bridging the gap between a high-level conceptual model and a functional workspace.', [
         ['Discovery & inventory', 'Designed list views and topological dependency maps to automatically catalog hidden AI assets.'],
@@ -246,24 +246,24 @@ const CASES = {
         ['The AI Steward', 'Focused on safety, ROI, and out-of-the-box regulatory alignment.'],
         ['The IT Admin', 'Focused on infrastructure — needing AI assets to behave like familiar Configuration Items (CIs) mapped directly to business services.'],
         ['The AI Product Manager', 'Focused on tracking the end-to-end lifecycle of specific models.']]),
-      img1(I('rdbuvLfjMMid4v02RgPS6uVZU.jpg', 'User journey')),
-      img1(I('mcr2NSxMZGHJSfUp074sgqOgrIk.png', 'AI Control Tower — landing page')),
-      imgs(I('xyYWPwa4vI5roIhRbhhhpRBfcc.jpg', 'AI Control Tower — mobile'), I('bcmm2pzmgmakgUyCTOlTcExY5Rk.jpg', 'AI Control Tower — mobile in hand')),
+      img1(I('aict-user-journey.jpg', 'User journey')),
+      img1(I('aict-landing-page.png', 'AI Control Tower — landing page')),
+      imgs(I('aict-mobile.jpg', 'AI Control Tower — mobile'), I('aict-mobile-in-hand.jpg', 'AI Control Tower — mobile in hand')),
       L('High-Velocity Execution', 'Operating as a solo lead on a platform-level initiative required ruthless efficiency and power-user workflows.', [
         ['Design system mastery', 'Built modular, scalable components within the Next Experience UI framework for data-dense tables, lifecycle trackers, and telemetry visualizations.'],
         ['AI-accelerated workflows', 'Integrated AI design tools directly into the prototyping process — iterating layout permutations, generating realistic synthetic data for tables, and ideating visual metaphors for model drift and token usage.'],
         ['Pixel-perfect dashboards', 'Crafted high-fidelity screens that balanced dense information with actionable clarity.']]),
-      img1(I('bgUScx5FxUIDCVvygBrNubujM.jpg', 'Presenting at AI Summit Singapore')),
+      img1(I('aict-ai-summit-singapore.jpg', 'Presenting at AI Summit Singapore')),
       { isCaption: true, text: 'Represented this project at the AI Summit Singapore — bringing an idea from concept to customer conversations and showcasing how innovation can translate into meaningful business value.' },
-      { isVideo: true, src: 'https://framerusercontent.com/assets/he2DXb2O2FxRQk2g9Lv043YGQAk.mp4' }
+      { isVideo: true, src: 'assets/aict-presentation.mp4' }
     ],
-    quote: { pre: 'Suri has been a key design force behind many of the CxO dashboards and ', hl: 'AI governance applications, including AI Control Tower (AICT)', post: ', that we have built.', name: 'Kartik Sabat', role: 'Data & Analytics Leadership, ServiceNow', img: F + 'cUVwtHaXZYgdZ7LHKg4O1lWWXw.png' }
+    quote: { pre: 'Suri has been a key design force behind many of the CxO dashboards and ', hl: 'AI governance applications, including AI Control Tower (AICT)', post: ', that we have built.', name: 'Kartik Sabat', role: 'Data & Analytics Leadership, ServiceNow', img: F + 'avatar-kartik-04.png' }
   },
   dct: {
     title: 'C-Suite Visibility of Workflows across Functions',
     project: 'Digital Control Tower', year: '2024',
     roleLine: 'UX Lead, EBC Enabler / Presenter',
-    thumb: './thumb_02-mukxnpul-8a3m.jpg',
+    thumb: 'assets/thumb-dct.jpg',
     summary: 'A single, glance-first platform giving CXOs a live, cross-functional view of every critical workflow — Tech, Finance, HR, Legal, IT, Support — and a centerpiece of every Executive Briefing Center presentation.',
     scope: ['Executive Stakeholders', 'Cross-functional Systems', 'Overall UX'],
     tldr: [
@@ -282,49 +282,49 @@ const CASES = {
       cost: 'Less precision at a glance, and a real accessibility risk from relying on colour.' }],
     role: ['UX Lead', 'EBC Enabler / Presenter'],
     blocks: [
-      img1(I('GYeVtgkVX4QryvHokglfBCHRTk.jpg', 'Digital Control Tower')),
+      img1(I('dct-hero.jpg', 'Digital Control Tower')),
       P('The Digital Control Tower ', "is a single, glance-first platform giving the C-suite an instant, bird's-eye view of every critical workflow running across the company — Tech, Finance, HR, Legal, IT, and Customer Support — and a defining centerpiece of every Executive Briefing Center (EBC) presentation."),
       { isChallenge: true, text: 'Our organization ran on dozens of siloed, function-specific tools. CXOs had no real-time consolidated view of what was actually happening across the company and relied on manual, static reports that were stale by the time they were presented — leading to slow decision-making, missed dependencies, and reactive problem-solving.' },
-      img1(I('bIobwNRxXzy4J2GaHkjzM184jo.jpg', 'Sketches')),
+      img1(I('dct-sketches.jpg', 'Sketches')),
       L('Discovery & Design Principles', 'Deep-dive interviews with the CEO, CFO, COO, and CIO surfaced a common set of questions every CXO wanted to answer about any workflow — Status, Volume & Velocity, Owner, and Impact. From that, I distilled three governing principles.', [
         ["'Glanceability' is king", 'An executive should understand the health of their entire function in under 10 seconds — long before they ever click.'],
         ["Don't show the data — show the story", 'Visual cues, colour coding, and trends do the work of telling a CXO whether to be concerned, before any number is read.'],
         ["Drill down, but don't get stuck", 'One layer of context, never more. The Control Tower is a decision-making surface, not a deep-dive analytics tool.']]),
-      img1(I('oGMGeMfYeAFRxzDIwH0RwtFMvlU.jpg', 'Control Tower layers')),
+      img1(I('dct-layers.jpg', 'Control Tower layers')),
       L('Digital Control Tower Layers', 'Three layers, one visual grammar — from the boardroom overview to each function.', [
         ['Executive Overview', "The top layer gives the absolute highest-level view of the organization's health — the screen a CEO or COO opens with in an EBC, tailored for large-format display and ultra-clean data density.", 'L01'],
         ['Inter-Dependency Map', 'In an EBC, the power of one platform is proven not by listing workflows but by showing how they connect. This layer visualises how a signal in one function ripples across the rest of the business.', 'L02'],
         ['Functional Drill-Down', 'Clicking any functional card opens the dedicated view for that CXO — the CIO on Technology, the CFO on Finance — preserving the same design system so context transfers instantly.', 'L03']]),
-      img1(I('5MYnQjN1jxQfRNi3Ew3SVqSnZi8.jpg', 'Executive overview')),
+      img1(I('dct-executive-overview.jpg', 'Executive overview')),
       L('Layer 1 — The Executive Overview', 'Health and momentum, readable in one glance.', [
         ['Big Number Cards', 'Active Workflows, At-Risk, MTTR trend, and Resource Utilization — each with a directional trend indicator that signals in seconds.'],
         ['Unified Status Heatmap', 'One card per major function with a status ring (Green / Yellow / Red) and a sparkline of active-workflow volume.'],
         ['Critical Attention Panel', 'A side rail with the top 3–5 workflows across the company that need executive attention right now — ranked by potential business impact.']]),
-      img1(I('TOynX7JhJmScqi591RzSRwEyN4.jpg', 'Inter-dependency map')),
+      img1(I('dct-interdependency-map.jpg', 'Inter-dependency map')),
       L('Layer 2 — The Inter-Dependency Map', 'Making cross-functional dependencies visible.', [
         ['Connected Workflow Nodes', 'A Product Launch node in Technology connects to Accounts Payable (Finance), Recruiting Pipeline (HR), and Support Readiness (Customer Support).'],
         ['Health Color Edges', "Each dependency line carries the current health of the relationship — a red edge instantly says 'a hiring bottleneck is putting your launch at risk.'"],
         ['Callout Narratives', "Side callouts explain the relationship: 'Product Launch → HR Recruiting · Risk: 3 senior roles unfilled · Impact: High' — a story arc a CXO can lift straight into a customer conversation."]]),
-      imgs(I('i1r7UKTdPsFVmnSQiLTkuozyuPQ.jpg', 'Functional drill-down — Technology'), I('xpktnZjtUCIbi3zmq2HR0J9mU.jpg', 'Functional drill-down — workflow groups')),
+      imgs(I('dct-drilldown-technology.jpg', 'Functional drill-down — Technology'), I('dct-drilldown-workflows.jpg', 'Functional drill-down — workflow groups')),
       L('Layer 3 — The Functional Drill-Down', 'Swap-in metrics, same visual grammar.', [
         ['Function-Specific Parameters', 'For Technology: System Uptime, Sprint Velocity, Security Incidents, and Cloud Spend Variance.'],
         ['Workflow Groups', 'The grid re-organizes into Platform Development, Infrastructure & Cloud, Security & Compliance, and Data Engineering — each with its own health status and key metric.'],
         ['Top 5 Blockers List', 'Replaces the general attention panel — showing the specific workflow blockers dragging the function down and who owns them.']]),
-      img1(I('F5Sh6vkehnr5MkY2AUB8OY0SsYE.jpg', 'Digital Control Tower poster')),
+      img1(I('dct-poster.jpg', 'Digital Control Tower poster')),
       L('High-Velocity Execution', 'Fast execution of all ideas discussed during workshops with internal stakeholders, including VP/CXO-level users.', [
         ['Design system mastery', 'Built modular, scalable components within the Next Experience UI framework for high-level numbers, right metrics, data tables, and visualizations.'],
         ['AI-accelerated workflows', 'Integrated AI design tools directly into the prototyping process — iterating layout permutations and generating realistic synthetic data for tables.'],
         ['Brand-compliant designs', 'Customized the whole experience for individual customers so they could understand it from their own brand perspective — e.g. the FedEx EBC.']]),
-      img1(I('gqcqW5xmaRMMxn7Ik3u0SBETZo8.jpg', 'Digital Control Tower — inside')),
-      imgs(I('yZZ1C3nuFSnETwdv1ciC9OWE.jpg', 'FedEx CEO Dashboard'), I('dlcdeKJiCb7MMjHxaxkAWEhaqdk.jpg', 'FedEx Customer Success'))
+      img1(I('dct-inside.jpg', 'Digital Control Tower — inside')),
+      imgs(I('dct-fedex-ceo-dashboard.jpg', 'FedEx CEO Dashboard'), I('dct-fedex-customer-success.jpg', 'FedEx Customer Success'))
     ],
-    quote: { pre: 'The redesign of our Digital Control Tower ', hl: 'led to 20% increase in sales through C-suite EBC presentations', post: '.', name: 'Kartik Sabat', role: 'Data & Analytics Leadership, ServiceNow', img: F + 'YKTFZehxmzHabUfsyh5YKa0vM.png' }
+    quote: { pre: 'The redesign of our Digital Control Tower ', hl: 'led to 20% increase in sales through C-suite EBC presentations', post: '.', name: 'Kartik Sabat', role: 'Data & Analytics Leadership, ServiceNow', img: F + 'avatar-kartik-03.png' }
   },
   gestalt: {
     title: 'AI Skills for Enterprise Analytics',
     project: 'Design Enablement using AI', year: '2025',
     roleLine: 'Project Gestalt · AI Automation, AI Orchestrator',
-    thumb: './thumb_03-mukxng6q-jqo9.jpg',
+    thumb: 'assets/thumb-gestalt.jpg',
     summary: 'A Claude-powered build skill and an AI review portal that put our design system inside developers’ own workflow — so 450+ Tableau-to-Power BI migrations shipped compliant by default, reviews dropped from 48 hours to 4, and a two-person design team got its time back for product work.',
     hasContext: true,
     context: 'The Analytics Team was asked to migrate 450+ Tableau dashboards to Power BI within a year. Dashboards started shipping inconsistent: colors and padding ignored the design system, review took 48 hours per submission, and chart selection was driven by default availability rather than data intent. The system needed automation to speed up the process with compliance in place.',
@@ -345,23 +345,23 @@ const CASES = {
       cost: 'Two things to maintain and keep aligned with the design system.' }],
     role: ['AI Automation', 'AI Orchestrator', 'Lead Ideator'],
     blocks: [
-      img1(I('dVfpr1hwQGnizI1FgTHyQ0VY5c.png', 'Project Gestalt — AI design enablement')),
+      img1(I('gestalt-hero.png', 'Project Gestalt — AI design enablement')),
       P('It started on an ordinary Monday: ', "my queue held 41 unread dashboard reviews. Each one had arrived as a Tableau-to-Power BI conversion from a developer who moved fast and skipped the styleguide: wrong KPI card padding, a donut chart where a bar chart belonged, brand blue swapped for default Power BI blue, contrast ratios that failed accessibility. I flagged it, wrote the feedback, sent it back, waited for the fix, reviewed again. Multiplied by 450 dashboards and two designers, the math didn't work."),
       { isChallenge: true, text: "Facing a backlog of 450 Tableau-to-Power BI dashboard migrations filled with style guide violations, our two-person design team spent every hour manually reviewing padding, colors, and charts. With all our bandwidth consumed by gate-checking, high-value product innovation stalled. We didn't have a talent problem; we had a throughput crisis." },
-      imgs(I('eLwzYX99Sobav5s13eXROgyfnI.jpg', 'Project Gestalt — design review workflow'), I('Dhp8h8CGSCznot6hNhhS6uNzneU.jpg', 'Project Gestalt — review portal')),
-      img1(I('jfkM8TL2UopeeK03BKNmmmiWxo.jpg', 'Project Gestalt — dashboard review report')),
+      imgs(I('gestalt-review-workflow.jpg', 'Project Gestalt — design review workflow'), I('gestalt-review-portal.jpg', 'Project Gestalt — review portal')),
+      img1(I('gestalt-review-report.jpg', 'Project Gestalt — dashboard review report')),
       P('', "My job title didn't change over the year. What changed was what filled my calendar. The skill absorbed the default case — developers building compliant dashboards from the start. The portal absorbed the volume case — fast, specific feedback on everything already built. What was left for me was the case AI couldn't own: judgement calls, new patterns, the right charts for the insights, and the two product ideas that finally got a workshop."),
       { isStatement: true, text: "AI didn't replace me. It un-buried me from a lot of monotonous machine work." },
-      img1(I('lbH7FCgu5dLTRDH2PQjhA4TikSk.jpg', 'Project Gestalt — skill in use')),
-      img1(I('0FazZpou0cwV7mVrEJyZyPYPds.png', 'Project Gestalt banner'))
+      img1(I('gestalt-skill-in-use.jpg', 'Project Gestalt — skill in use')),
+      img1(I('gestalt-banner.png', 'Project Gestalt banner'))
     ],
-    quote: { pre: 'In addition to a smoother and faster migration, this work streamlined the experience of all our dashboards, resulting in ', hl: '100% design system adoption, 80% faster design reviews & overall designers up-levelling.', post: '', name: 'Padmanabham Tirumala', role: 'Engineering Manager', img: F + 'rsLBIIA4zxe80PjtwbNGR0wiGk.jpeg' }
+    quote: { pre: 'In addition to a smoother and faster migration, this work streamlined the experience of all our dashboards, resulting in ', hl: '100% design system adoption, 80% faster design reviews & overall designers up-levelling.', post: '', name: 'Padmanabham Tirumala', role: 'Engineering Manager', img: F + 'avatar-padma-03.jpeg' }
   },
   beyond: {
     title: 'Beyond the screen: sketching, teaching & always learning',
     project: 'Beyond Screens', year: '2006-Ongoing',
     roleLine: 'Workshops · Teaching · Mentoring · AI exploration · Branding · Sketchnotes',
-    thumb: 'assets/beyond/thumb-beyond-wide.jpg',
+    thumb: 'assets/thumb-beyond-wide.jpg',
     summary: 'The work that extends my impact beyond product roadmaps — facilitating cross-functional design thinking, teaching and mentoring the next generation of designers, staying hands-on with AI, and using visual thinking to make complex ideas clear.',
     scope: ['Workshop Facilitation', 'Teaching & Mentoring', 'AI Exploration', 'Conferences', 'Brand Identity', 'Sketchnoting'],
     role: ['Workshop Facilitator', 'Guest Lecturer', 'Cohort Mentor', 'Brand Designer', 'Sketchnote Artist', 'Lifelong Learner'],

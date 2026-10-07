@@ -38,12 +38,12 @@
 <link rel="apple-touch-icon" href="assets/favicon-dark.jpg">
 <script src="./image-slot.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
 :root{--brand:oklch(0.52 0.2 260);--bg:#FAFAFA;--ink:20,20,24;--fg:#141418;--glass:255,255,255;--ga:9;--sa:0.22;--hl:255,255,255;--btn:#a9d1f9;--btnfg:#141418;--accent:#a9d1f9;--logo:brightness(0);--good:oklch(0.5 0.14 150);--ring:#FAFAFA;--navbg:rgba(255,255,255,0.82);--navbg2:rgba(255,255,255,0.96);--navdesk:rgba(var(--glass),calc(0.07*var(--ga)))}
 :root[data-theme=dark]{--brand:oklch(0.74 0.14 250);--bg:#2C2C2C;--ink:255,255,255;--fg:#FFFFFF;--glass:255,255,255;--ga:1;--sa:1;--hl:255,255,255;--btn:#a9d1f9;--btnfg:#141418;--accent:#a9d1f9;--logo:brightness(0) invert(1);--good:oklch(0.85 0.15 150);--ring:#2C2C2C;--navbg:rgba(18,18,20,0.8);--navbg2:rgba(18,18,20,0.9);--navdesk:rgba(18,18,20,0.8)}
 html{scroll-padding-top:104px}
-html,body{margin:0;background:var(--bg);color:var(--fg);transition:background .3s,color .3s;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+html,body{margin:0;background:var(--bg);color:var(--fg);transition:background .3s,color .3s;font-family:'Geist',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 a{color:var(--fg);text-decoration:none}
 a:hover{color:var(--fg);opacity:.85}
 a:not([style*="border-radius"]):hover{opacity:1;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
@@ -115,7 +115,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 <main style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px">
 
   <section data-screen-label="Work Hero" style="padding:clamp(110px,16vh,170px) 0 clamp(56px,8vw,88px);display:flex;flex-direction:column;gap:24px">
-    <h1 style="margin:0;font-size:clamp(44px,7.4vw,104px);line-height:0.98;letter-spacing:-0.045em;font-weight:600;text-wrap:balance">Selected <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.02em">Work</span></h1>
+    <h1 style="margin:0;font-size:clamp(44px,7.4vw,104px);line-height:0.98;letter-spacing:-0.045em;font-weight:600;text-wrap:balance">Selected <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-0.02em;font-size:1.3em">Work</span></h1>
     <p style="margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.5;color:rgba(var(--ink),0.7);max-width:58ch;text-wrap:pretty">A curated selection of end-to-end product design stories demonstrating human-centered strategy, algorithmic intelligence, and scalable system design to deliver high-impact digital experiences.</p>
   </section>
 
@@ -123,20 +123,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <sc-for list="{{ cases }}" as="w" hint-placeholder-count="3">
       <a href="{{ w.href }}" style="display:flex;flex-direction:column;border-radius:36px;padding:10px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.2),0 30px 80px rgba(0,0,0,calc(0.35*var(--sa)));transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s" style-hover="transform:translateY(-6px);background:rgba(var(--glass),calc(0.09*var(--ga)));opacity:1">
         <sc-if value="{{ w.hasThumb }}" hint-placeholder-val="{{ false }}"><img src="{{ w.thumb }}" alt="{{ w.project }}" loading="lazy" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center top;border-radius:28px;display:block;background:rgba(var(--ink),0.05)"></sc-if>
-        <sc-if value="{{ w.noThumb }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:100%;aspect-ratio:2/1;border-radius:28px;overflow:hidden"><image-slot id="work-beyond" shape="rounded" radius="28" placeholder="Beyond Screens — wide thumbnail"></image-slot></div></sc-if>
+        <sc-if value="{{ w.noThumb }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:100%;aspect-ratio:2/1;border-radius:28px;overflow:hidden"><image-slot id="{{ w.slotId }}" shape="rounded" radius="28" placeholder="{{ w.slotPh }}"></image-slot></div></sc-if>
         <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:24px 40px;padding:clamp(20px,3vw,32px) clamp(14px,2.4vw,28px) clamp(14px,2vw,22px)">
           <div style="flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ w.n }}</span>
+            <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ w.n }}</span>
             <span style="font-size:clamp(26px,3vw,38px);font-weight:600;letter-spacing:-0.03em;line-height:1.1;text-wrap:balance">{{ w.project }}</span>
             <span style="font-size:16px;line-height:1.5;color:rgba(var(--ink),0.65);text-wrap:pretty">{{ w.title }}</span>
           </div>
           <div style="flex:2 1 460px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:20px 28px">
             <div style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Year</span>
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Year</span>
               <span style="font-size:16px;font-weight:500">{{ w.year }}</span>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Scope of work</span>
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Scope of work</span>
               <div style="display:flex;flex-direction:column;gap:4px">
                 <sc-for list="{{ w.scope }}" as="s">
                   <span style="font-size:15px;line-height:1.4">{{ s }}</span>
@@ -144,7 +144,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
               </div>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Role</span>
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Role</span>
               <div style="display:flex;flex-direction:column;gap:4px">
                 <sc-for list="{{ w.role }}" as="r">
                   <span style="font-size:15px;line-height:1.4">{{ r }}</span>
@@ -161,23 +161,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div data-screen-label="Dark footer zone" style="--ink:255,255,255;--fg:#FFFFFF;--bg:#161618;color:#FFFFFF;background:#161618;box-shadow:0 0 0 100vmax #161618;clip-path:inset(0 -100vmax -100vmax -100vmax)">
   <section id="contact" data-screen-label="Contact" style="padding:0 0 40px">
     <div style="padding:clamp(56px,8vw,96px) 0 0;display:flex;flex-direction:column;gap:56px">
-      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Get in touch</span>
-      <h2 style="margin:0;font-size:clamp(44px,7.4vw,104px);letter-spacing:-0.05em;font-weight:600;line-height:0.98">Let's <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">{{ word }}</span><br>incredible work together.</h2>
+      <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Get in touch</span>
+      <h2 style="margin:0;font-size:clamp(44px,7.4vw,104px);letter-spacing:-0.05em;font-weight:600;line-height:0.98">Let's <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">{{ word }}</span><br>incredible work together.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px;padding-top:32px;border-top:1px solid rgba(var(--ink),0.12)">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Email</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Email</span>
           <a href="mailto:surendra.manekar@gmail.com" style="font-size:17px">surendra.manekar@gmail.com</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Call me</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Call me</span>
           <a href="tel:+917032904279" style="font-size:17px">+91 70329 04279</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Resume</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Resume</span>
           <a href="assets/SuriManekarCV_2026.pdf" target="_blank" rel="noopener" style="font-size:17px">Suri Manekar CV ↗</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Social</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Social</span>
           <div style="display:flex;flex-wrap:wrap;gap:12px">
             <a href="https://www.linkedin.com/in/suribbles" target="_blank" aria-label="LinkedIn" title="LinkedIn" style="display:flex;width:40px;height:40px;flex:none;color:var(--fg);transition:transform .2s,opacity .2s" style-hover="transform:translateY(-2px);opacity:0.75"><span style="display:block;width:100%;height:100%;background:currentColor;-webkit-mask:url(assets/icon-linkedin.svg) center/contain no-repeat;mask:url(assets/icon-linkedin.svg) center/contain no-repeat"></span></a>
             <a href="https://x.com/suribbles" target="_blank" aria-label="X" title="X" style="display:flex;width:40px;height:40px;flex:none;color:var(--fg);transition:transform .2s,opacity .2s" style-hover="transform:translateY(-2px);opacity:0.75"><span style="display:block;width:100%;height:100%;background:currentColor;-webkit-mask:url(assets/icon-x.svg) center/contain no-repeat;mask:url(assets/icon-x.svg) center/contain no-repeat"></span></a>
@@ -397,10 +397,20 @@ const CASES = {
     ],
     tldr: [], impact: [], decisions: [], noTldr: true, noDecisions: true, noQuote: true,
     quote: { pre: '', hl: '', post: '', name: '', role: '', img: '' }
+  },
+  mascot: {
+    title: 'Every AI agent needs a face people will adopt without any fear.',
+    project: 'ServiceNow AI Agents · Character Concept', year: '2026',
+    roleLine: 'Point of view · Character design · AI trust',
+    thumb: 'assets/work-mascot.jpg',
+    scope: ['AI Agent Branding', 'Character Design', 'UX Psychology'],
+    role: ['Principal Designer', 'Illustrator', 'Author'],
+    blocks: [], tldr: [], impact: [], decisions: [],
+    quote: { pre: '', hl: '', post: '', name: '', role: '', img: '' }
   }
 };
 
-const TITLES = { aict: 'AI Control Tower', dct: 'Digital Control Tower', gestalt: 'Project Gestalt', beyond: 'Beyond Screens' };
+const TITLES = { aict: 'AI Control Tower', dct: 'Digital Control Tower', gestalt: 'Project Gestalt', beyond: 'Beyond Screens', mascot: 'AI Agent Mascots' };
 class Component extends DCLogic {
   wmPanelRef = React.createRef();
   wmTrigRef = React.createRef();
@@ -435,7 +445,7 @@ class Component extends DCLogic {
   componentDidUpdate() { this.applyTheme(); this.setTitle(); }
   setTitle() { document.title = 'Case Studies · Suri Manekar, Lead Product Designer & UX Leader, Hyderabad'; }
   renderVals() {
-    const cases = Object.keys(CASES).map((k, i) => ({ ...CASES[k], thumb: CASES[k].noThumb ? '' : 'assets/work-' + k + '.jpg', hasThumb: !CASES[k].noThumb, noThumb: !!CASES[k].noThumb, n: String(i + 1).padStart(2, '0'), href: 'CaseStudy.html?p=' + k }));
+    const cases = Object.keys(CASES).map((k, i) => ({ ...CASES[k], thumb: CASES[k].noThumb ? '' : 'assets/work-' + k + '.jpg', hasThumb: !CASES[k].noThumb, noThumb: !!CASES[k].noThumb, slotId: 'work-' + k, slotPh: CASES[k].project + ' — wide thumbnail', n: String(i + 1).padStart(2, '0'), href: 'CaseStudy.html?p=' + k }));
     return { ...this.respVals(), ...this.themeVals(), word: ['design', 'build', 'create'][this.state.w || 0], wmBox: this.wmBox, wmText: this.wmText, cases };
   }
 }

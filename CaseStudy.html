@@ -100,12 +100,12 @@
 <link rel="apple-touch-icon" href="assets/favicon-dark.jpg">
 <script src="./image-slot.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
 :root{--brand:oklch(0.52 0.2 260);--bg:#FAFAFA;--ink:20,20,24;--fg:#141418;--glass:255,255,255;--ga:9;--sa:0.22;--hl:255,255,255;--btn:#a9d1f9;--btnfg:#141418;--accent:#a9d1f9;--logo:brightness(0);--good:oklch(0.5 0.14 150);--ring:#FAFAFA;--navbg:rgba(255,255,255,0.82);--navbg2:rgba(255,255,255,0.96);--navdesk:rgba(var(--glass),calc(0.07*var(--ga)))}
 :root[data-theme=dark]{--brand:oklch(0.74 0.14 250);--bg:#2C2C2C;--ink:255,255,255;--fg:#FFFFFF;--glass:255,255,255;--ga:1;--sa:1;--hl:255,255,255;--btn:#a9d1f9;--btnfg:#141418;--accent:#a9d1f9;--logo:brightness(0) invert(1);--good:oklch(0.85 0.15 150);--ring:#2C2C2C;--navbg:rgba(18,18,20,0.8);--navbg2:rgba(18,18,20,0.9);--navdesk:rgba(18,18,20,0.8)}
 html{scroll-padding-top:104px}
-html,body{margin:0;background:var(--bg);color:var(--fg);transition:background .3s,color .3s;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+html,body{margin:0;background:var(--bg);color:var(--fg);transition:background .3s,color .3s;font-family:'Geist',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 a{color:var(--fg);text-decoration:none}
 a:hover{color:var(--fg);opacity:.85}
 a:not([style*="border-radius"]):hover{opacity:1;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
@@ -113,6 +113,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @keyframes drift1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(12vw,10vh) scale(1.15)}}
 @keyframes drift2{0%{transform:translate(0,0) scale(1.1)}100%{transform:translate(-14vw,6vh) scale(.95)}}
 @keyframes drift3{0%{transform:translate(0,0) scale(1)}100%{transform:translate(6vw,-12vh) scale(1.2)}}
+@keyframes mFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes mShadow{0%,100%{transform:scaleX(1);opacity:.55}50%{transform:scaleX(.8);opacity:.3}}
+@keyframes mBlink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes mWaveL{0%,100%{transform:rotate(0)}50%{transform:rotate(12deg)}}
+@keyframes mWaveR{0%,100%{transform:rotate(0)}50%{transform:rotate(-12deg)}}
+@keyframes mBeat{0%,50%,100%{transform:scale(1)}12%{transform:scale(1.08)}24%{transform:scale(.98)}36%{transform:scale(1.05)}}
+@keyframes mDraw{0%{stroke-dashoffset:160}55%,100%{stroke-dashoffset:0}}
+@keyframes mSpin{to{transform:rotate(360deg)}}
+@keyframes mWiggle{0%,100%{transform:rotate(-16deg)}40%{transform:rotate(20deg)}70%{transform:rotate(4deg)}}
+@keyframes mTwinkle{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(40deg) scale(1.2)}}
+@keyframes mGlow{0%,100%{opacity:1;box-shadow:0 0 16px #7BE07B}50%{opacity:.65;box-shadow:0 0 4px #7BE07B}}
+@keyframes mFlick{0%,40%,60%,100%{opacity:1}50%{opacity:.3}}
+@keyframes mHop{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes mSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
 </style>
 </helmet>
 <template id="__bundler_thumbnail"><svg data-bg-color="#FAFAFA" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#FAFAFA"></rect><circle cx="50" cy="50" r="20" fill="#a9d1f9"></circle><text x="50" y="57" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#141418">S</text></svg></template>
@@ -140,7 +154,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <sc-if value="{{ workOpen }}" hint-placeholder-val="{{ false }}">
     <div ref="{{ wmPanelRef }}" role="menu" aria-label="Selected Work" style="pointer-events:auto;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(640px,calc(100vw - 24px));box-sizing:border-box;padding:14px;border-radius:30px;background:var(--navbg2);backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(var(--ink),0.14);box-shadow:inset 0 1px 0 rgba(var(--hl),0.22),0 30px 80px rgba(0,0,0,calc(0.5*var(--sa)));display:flex;flex-direction:column;gap:10px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 4px 2px 10px">
-        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">Selected Work</span>
+        <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">Selected Work</span>
         <div style="display:flex;align-items:center;gap:6px">
           <a href="AllWork.html" onClick="{{ closeWork }}" style="padding:8px 12px;border-radius:999px;font-size:13px;color:rgba(var(--ink),0.78)" style-hover="background:rgba(var(--glass),calc(0.08*var(--ga)));color:var(--fg);opacity:1">View all →</a>
           <button onClick="{{ closeWork }}" aria-label="Close menu" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(var(--ink),0.16);background:rgba(var(--glass),calc(0.08*var(--ga)));color:var(--fg);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;font-size:14px;line-height:1">✕</button>
@@ -220,11 +234,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div role="dialog" aria-modal="true" aria-label="{{ lbHeader }}" onClick="{{ lbClose }}" style="position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;background:rgba(10,10,14,0.82);backdrop-filter:blur(24px) saturate(140%);color:#fff">
     <div onClick="{{ lbStop }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,2.4vw,24px) clamp(16px,3vw,32px);border-bottom:1px solid rgba(255,255,255,0.12)">
       <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
-        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)">{{ lbProject }}</span>
+        <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)">{{ lbProject }}</span>
         <span style="font-size:clamp(17px,2vw,24px);font-weight:600;letter-spacing:-0.02em;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ lbHeader }}</span>
       </div>
       <div style="display:flex;align-items:center;gap:14px;flex:none">
-        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:rgba(255,255,255,0.7)">{{ lbCount }}</span>
+        <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:rgba(255,255,255,0.7)">{{ lbCount }}</span>
         <button onClick="{{ lbClose }}" aria-label="Close" style="width:44px;height:44px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-size:16px;color:#fff;background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.22)" style-hover="background:rgba(255,255,255,0.22)">✕</button>
       </div>
     </div>
@@ -253,15 +267,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       </div>
       <div style="padding:28px;border-radius:28px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.22),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Project</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Project</span>
           <span style="font-size:17px;font-weight:500">{{ c.project }}</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Year</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Year</span>
           <span style="font-size:17px;font-weight:500">{{ c.year }}</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;grid-column:1/-1">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Scope of work</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Scope of work</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
             <sc-for list="{{ c.scope }}" as="s" hint-placeholder-count="3">
               <span style="padding:6px 12px;border-radius:999px;background:rgba(var(--glass),calc(0.08*var(--ga)));border:1px solid rgba(var(--ink),0.14);font-size:13px">{{ s }}</span>
@@ -269,7 +283,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;grid-column:1/-1">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Role</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Role</span>
           <div style="display:flex;flex-wrap:wrap;column-gap:8px;row-gap:4px;align-items:baseline">
             <sc-for list="{{ c.roleItems }}" as="r" hint-placeholder-count="2">
               <span style="display:inline-flex;gap:8px;align-items:baseline;font-size:15px;font-weight:500"><sc-if value="{{ r.sep }}"><span aria-hidden="true" style="color:rgba(var(--ink),0.4)">·</span></sc-if>{{ r.name }}</span>
@@ -283,7 +297,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <sc-if value="{{ c.showTldr }}" hint-placeholder-val="{{ true }}">
   <section data-screen-label="TLDR" style="padding:0 0 clamp(56px,8vw,96px)">
     <div style="padding:clamp(24px,4vw,40px);border-radius:32px;background:rgba(var(--glass),calc(0.07*var(--ga)));backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(var(--ink),0.16);box-shadow:inset 0 1px 0 rgba(var(--hl),0.28),0 30px 80px rgba(0,0,0,calc(0.35*var(--sa)));display:flex;flex-direction:column">
-      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6);padding-bottom:16px">TL;DR</span>
+      <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6);padding-bottom:16px">TL;DR</span>
       <sc-for list="{{ c.tldr }}" as="t" hint-placeholder-count="6">
         <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 0;border-top:1px solid rgba(var(--ink),0.1)">
           <span style="flex:0 0 160px;font-size:14px;font-weight:600;color:rgba(var(--ink),0.6);padding-top:2px">{{ t.k }}</span>
@@ -316,16 +330,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
         <sc-if value="{{ b.isSection }}">
           <div style="display:flex;flex-direction:column;gap:12px;padding-top:clamp(8px,2vw,24px);border-top:1px solid rgba(var(--ink),0.12)">
-            <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;color:rgba(var(--ink),0.55);padding-top:24px">{{ b.k }}</span>
+            <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;color:rgba(var(--ink),0.55);padding-top:24px">{{ b.k }}</span>
             <h2 style="margin:0;font-size:clamp(34px,4.6vw,60px);letter-spacing:-0.04em;font-weight:600;line-height:1.02;text-wrap:balance">{{ b.title }}</h2>
-            <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.4vw,30px);color:rgba(var(--ink),0.7)">{{ b.sub }}</p>
+            <sc-if value="{{ b.big }}"><p style="margin:0;font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-size:calc(1.69 * clamp(22px,2.4vw,30px));">{{ b.sub }}</p></sc-if>
+            <sc-if value="{{ b.notBig }}"><p style="margin:0;font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-size:calc(1.3 * clamp(22px,2.4vw,30px));">{{ b.sub }}</p></sc-if>
           </div>
         </sc-if>
 
         <sc-if value="{{ b.isSub }}">
           <div style="display:flex;flex-direction:column;gap:6px">
-            <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;color:rgba(var(--ink),0.55)">{{ b.k }}</span>
-            <h3 style="margin:0;font-size:clamp(26px,3vw,38px);letter-spacing:-0.03em;font-weight:600;line-height:1.1">{{ b.title }} <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:rgba(var(--ink),0.7)">— {{ b.sub }}</span></h3>
+            <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;color:rgba(var(--ink),0.55)">{{ b.k }}</span>
+            <h3 style="margin:0;font-size:clamp(26px,3vw,38px);letter-spacing:-0.03em;font-weight:600;line-height:1.1">{{ b.title }} <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">— {{ b.sub }}</span></h3>
           </div>
         </sc-if>
 
@@ -372,6 +387,40 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </div>
         </sc-if>
 
+        <sc-if value="{{ b.isStyles }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,max(200px,calc((100% - 48px) / 4))),1fr));gap:16px">
+            <sc-for list="{{ b.list }}" as="im">
+              <div style="padding:8px;border-radius:28px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.2),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column;position:relative">
+                <sc-if value="{{ im.final }}">
+                  <div style="position:absolute;top:22px;right:18px;z-index:2;transform:rotate(-9deg);padding:5px;border:2px solid #C8102E;border-radius:10px;background:rgba(255,255,255,0.85);pointer-events:none">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border:1.5px dashed #C8102E;border-radius:6px;color:#C8102E;font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;text-transform:uppercase;line-height:1">
+                      <span style="font-size:10px;letter-spacing:0.2em">Final</span>
+                      <span style="font-size:14px;font-weight:700;letter-spacing:0.12em">Selected</span>
+                      <span style="font-size:10px;letter-spacing:0.2em">Style</span>
+                    </div>
+                  </div>
+                </sc-if>
+                <img src="{{ im.src }}" alt="{{ im.alt }}" loading="lazy" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:20px;background:#ffffff">
+                <div style="display:flex;flex-direction:column;gap:4px;padding:16px 12px 12px">
+                  <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ im.n }}</span>
+                  <span style="font-size:18px;font-weight:600;letter-spacing:-0.015em">{{ im.title }}</span>
+                  <span style="font-size:14px;line-height:1.5;color:rgba(var(--ink),0.65);text-wrap:pretty">{{ im.note }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b.isImgsTall }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start">
+            <sc-for list="{{ b.list }}" as="im">
+              <div style="padding:8px;border-radius:28px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.2),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)))">
+                <img src="{{ im.src }}" alt="{{ im.alt }}" loading="lazy" onClick="{{ im.open }}" style="width:100%;height:auto;display:block;border-radius:20px;cursor:zoom-in">
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
         <sc-if value="{{ b.isImgs4 }}">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px">
             <sc-for list="{{ b.list }}" as="im">
@@ -382,18 +431,25 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </div>
         </sc-if>
 
+        <sc-if value="{{ b.isReddy }}">
+          <p style="margin:0 auto;max-width:820px;font-size:clamp(20px,2.1vw,28px);line-height:1.45;letter-spacing:-0.015em;color:rgba(var(--ink),0.7);text-wrap:pretty"><strong style="color:var(--fg);font-weight:600">Alabama Power</strong> was generating far more electricity than anyone was using. It needed people to plug in irons, washing machines, refrigerators and radios. So in 1926 it gave electricity a face: <strong style="color:var(--fg);font-weight:600">Reddy Kilowatt, a cheerful figure made of lightning bolts, with a lightbulb nose and the tagline “<em>Your Electric Servant</em>.”</strong> Utilities across America, and later other countries, licensed him — and American homes roughly doubled their electricity use by the late 1930s.</p>
+        </sc-if>
+
         <sc-if value="{{ b.isP }}">
           <p style="margin:0 auto;max-width:820px;font-size:clamp(20px,2.1vw,28px);line-height:1.45;letter-spacing:-0.015em;color:rgba(var(--ink),0.7);text-wrap:pretty"><strong style="color:var(--fg);font-weight:500">{{ b.lead }}</strong>{{ b.text }}</p>
         </sc-if>
 
         <sc-if value="{{ b.isStatement }}">
-          <p style="margin:0 auto;max-width:900px;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(32px,4.4vw,56px);line-height:1.1;letter-spacing:-0.01em;text-wrap:balance">{{ b.text }}</p>
+          <p style="margin:0 auto;max-width:900px;text-align:center;font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-size:calc(1.3 * clamp(32px,4.4vw,56px));line-height:1.1;letter-spacing:-0.01em;text-wrap:balance">{{ b.text }}</p>
+        </sc-if>
+        <sc-if value="{{ b.isStatementHl }}">
+          <p style="margin:0 auto;max-width:900px;text-align:center;font-size:clamp(34px,4.6vw,60px);font-weight:600;letter-spacing:-0.04em;line-height:1.08;text-wrap:balance">{{ b.text }}<span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-0.01em;font-size:1.3em">{{ b.hl }}</span></p>
         </sc-if>
 
         <sc-if value="{{ b.isChallenge }}">
           <div style="padding:clamp(28px,5vw,56px);border-radius:36px;background:rgba(var(--glass),calc(0.07*var(--ga)));backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(var(--ink),0.16);box-shadow:inset 0 1px 0 rgba(var(--hl),0.28),0 30px 80px rgba(0,0,0,calc(0.35*var(--sa)));display:flex;flex-direction:column;gap:20px">
-            <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">The challenge</span>
-            <p style="margin:0;font-size:clamp(22px,2.6vw,34px);line-height:1.3;letter-spacing:-0.02em;font-weight:500;text-wrap:pretty">{{ b.text }}</p>
+            <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">The challenge</span>
+            <p style="margin:0;font-size:clamp(22px,2.6vw,34px);line-height:1.3;letter-spacing:-0.02em;font-weight:500;text-wrap:pretty"><strong style="font-weight:700">{{ b.b1 }}</strong>{{ b.text }}<strong style="font-weight:700">{{ b.b2 }}</strong></p>
           </div>
         </sc-if>
 
@@ -406,7 +462,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
             <div style="display:flex;flex-direction:column;gap:12px">
               <sc-for list="{{ b.items }}" as="it">
                 <div style="padding:22px 24px;border-radius:24px;background:rgba(var(--glass),calc(0.05*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.12);box-shadow:inset 0 1px 0 rgba(var(--hl),0.18);display:flex;gap:18px;align-items:flex-start">
-                  <span style="font-family:'Geist Mono',monospace;font-size:12px;color:rgba(var(--ink),0.5);padding-top:4px;flex:none;min-width:22px">{{ it.k }}</span>
+                  <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:rgba(var(--ink),0.5);padding-top:4px;flex:none;min-width:22px">{{ it.k }}</span>
                   <div style="display:flex;flex-direction:column;gap:6px">
                     <span style="font-size:18px;font-weight:600;letter-spacing:-0.015em">{{ it.title }}</span>
                     <span style="font-size:15px;line-height:1.55;color:rgba(var(--ink),0.68);text-wrap:pretty">{{ it.body }}</span>
@@ -423,6 +479,154 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
           </div>
         </sc-if>
 
+        <sc-if value="{{ b.isExamples }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+            <sc-for list="{{ b.items }}" as="ex">
+              <div style="padding:8px;border-radius:28px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.2),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column">
+                <div style="position:relative;width:100%;aspect-ratio:4/3;border-radius:20px;overflow:hidden"><img src="{{ ex.src }}" alt="{{ ex.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+                <div style="display:flex;flex-direction:column;gap:6px;padding:16px 12px 12px">
+                  <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ ex.co }}</span>
+                  <span style="font-size:20px;font-weight:600;letter-spacing:-0.02em">{{ ex.title }}</span>
+                  <span style="font-size:15px;line-height:1.55;color:rgba(var(--ink),0.68);text-wrap:pretty">{{ ex.body }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b.isPerm }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;max-width:880px;width:100%;margin:0 auto">
+            <div style="padding:24px;border-radius:28px;background:rgba(var(--glass),calc(0.07*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.14);box-shadow:inset 0 1px 0 rgba(var(--hl),0.22),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column;gap:18px">
+              <div style="display:flex;gap:16px;align-items:center">
+                <div style="width:56px;height:56px;flex:none;border-radius:12px;background:linear-gradient(160deg,#3a3a40,#16161a);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15)"><div style="width:34px;height:6px;border-radius:3px;background:#ff3b30;box-shadow:0 0 14px #ff3b30"></div></div>
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <span style="font-size:17px;font-weight:600;line-height:1.3">“T-800” would like to access your saved cards</span>
+                  <span style="font-size:14px;color:rgba(var(--ink),0.62)">To complete purchases on your behalf.</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <span style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;background:var(--btn);color:var(--btnfg);font-size:15px;font-weight:600">Don’t Allow</span>
+                <span style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(var(--ink),0.2);font-size:15px;color:rgba(var(--ink),0.7)">Allow</span>
+              </div>
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Most people tap: Don’t Allow</span>
+            </div>
+            <div style="padding:24px;border-radius:28px;background:rgba(var(--glass),calc(0.07*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.14);box-shadow:inset 0 1px 0 rgba(var(--hl),0.22),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column;gap:18px">
+              <div style="display:flex;gap:16px;align-items:center">
+                <div style="position:relative;width:56px;height:56px;flex:none;border-radius:50% 50% 46% 46% / 56% 56% 44% 44%;background:radial-gradient(circle at 34% 28%,#FFE0CC,#FFB088 55%,#E07A4E);box-shadow:inset -4px -5px 10px rgba(0,0,0,0.12),0 6px 14px rgba(0,0,0,0.15)">
+                  <div style="position:absolute;left:16px;top:26px;width:8px;height:11px;border-radius:50%;background:#032D42"></div>
+                  <div style="position:absolute;left:32px;top:26px;width:8px;height:11px;border-radius:50%;background:#032D42"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <span style="font-size:17px;font-weight:600;line-height:1.3">“Blobby” would like to access your saved cards</span>
+                  <span style="font-size:14px;color:rgba(var(--ink),0.62)">I just want to help you check out faster!</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <span style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(var(--ink),0.2);font-size:15px;color:rgba(var(--ink),0.7)">Don’t Allow</span>
+                <span style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;background:var(--btn);color:var(--btnfg);font-size:15px;font-weight:600">Allow</span>
+              </div>
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Most people tap: Allow</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b.isChars }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,{{ b.min }}),1fr));gap:16px">
+            <sc-for list="{{ b.list }}" as="ch">
+              <div style="padding:8px;border-radius:28px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(28px) saturate(170%);border:1px solid rgba(var(--ink),0.13);box-shadow:inset 0 1px 0 rgba(var(--hl),0.2),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column">
+                <div style="position:relative;width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:{{ ch.stage }};display:flex;align-items:center;justify-content:center">
+                  <div style="position:relative;width:200px;height:200px;flex:none;transform:scale({{ ch.scale }})">
+                    <sc-if value="{{ ch.sd }}">
+                      <div style="position:absolute;left:36px;top:22px;width:128px;height:120px;box-sizing:border-box;border:10px solid {{ ch.acc }};border-bottom-color:transparent;border-radius:64px 64px 0 0"></div>
+                      <div style="position:absolute;left:26px;top:90px;width:26px;height:44px;box-sizing:border-box;border-radius:13px;background:{{ ch.accBg }};border:{{ ch.line }}"></div>
+                      <div style="position:absolute;right:26px;top:90px;width:26px;height:44px;box-sizing:border-box;border-radius:13px;background:{{ ch.accBg }};border:{{ ch.line }}"></div>
+                      <div style="position:absolute;left:40px;top:50px;width:120px;height:124px;box-sizing:border-box;border-radius:46px;background:{{ ch.body }};border:{{ ch.line }};box-shadow:{{ ch.shadow }};backdrop-filter:{{ ch.blur }}"></div>
+                      <div style="position:absolute;left:70px;top:98px;width:18px;height:24px;border-radius:50%;background:{{ ch.eye }}"></div>
+                      <div style="position:absolute;left:112px;top:98px;width:18px;height:24px;border-radius:50%;background:{{ ch.eye }}"></div>
+                      <div style="position:absolute;left:79px;top:102px;width:6px;height:6px;border-radius:50%;background:{{ ch.eyeHi }}"></div>
+                      <div style="position:absolute;left:121px;top:102px;width:6px;height:6px;border-radius:50%;background:{{ ch.eyeHi }}"></div>
+                      <div style="position:absolute;left:54px;top:126px;width:18px;height:10px;border-radius:50%;background:{{ ch.cheek }}"></div>
+                      <div style="position:absolute;left:128px;top:126px;width:18px;height:10px;border-radius:50%;background:{{ ch.cheek }}"></div>
+                      <div style="position:absolute;left:92px;top:124px;width:16px;height:9px;box-sizing:border-box;border:3px solid {{ ch.eye }};border-top:none;border-radius:0 0 12px 12px"></div>
+                      <div style="position:absolute;left:104px;top:128px;width:58px;height:34px;box-sizing:border-box;border:5px solid {{ ch.acc }};border-top:none;border-left:none;border-radius:0 0 28px 0"></div>
+                      <div style="position:absolute;left:96px;top:154px;width:14px;height:14px;border-radius:50%;background:{{ ch.accBg }}"></div>
+                    </sc-if>
+                    <sc-if value="{{ ch.hr }}">
+                      <div style="position:absolute;left:98px;top:18px;width:4px;height:30px;border-radius:2px;background:{{ ch.acc }}"></div>
+                      <div style="position:absolute;left:101px;top:10px;width:24px;height:16px;box-sizing:border-box;border-radius:0 100% 0 100%;background:{{ ch.leaf }};border:{{ ch.line }}"></div>
+                      <div style="position:absolute;left:75px;top:16px;width:24px;height:16px;box-sizing:border-box;border-radius:100% 0 100% 0;background:{{ ch.leaf }};border:{{ ch.line }}"></div>
+                      <div style="position:absolute;left:42px;top:42px;width:116px;height:136px;box-sizing:border-box;border-radius:50% 50% 46% 46% / 58% 58% 42% 42%;background:{{ ch.body }};border:{{ ch.line }};box-shadow:{{ ch.shadow }};backdrop-filter:{{ ch.blur }}"></div>
+                      <div style="position:absolute;left:72px;top:96px;width:18px;height:24px;border-radius:50%;background:{{ ch.eye }}"></div>
+                      <div style="position:absolute;left:110px;top:96px;width:18px;height:24px;border-radius:50%;background:{{ ch.eye }}"></div>
+                      <div style="position:absolute;left:81px;top:100px;width:6px;height:6px;border-radius:50%;background:{{ ch.eyeHi }}"></div>
+                      <div style="position:absolute;left:119px;top:100px;width:6px;height:6px;border-radius:50%;background:{{ ch.eyeHi }}"></div>
+                      <div style="position:absolute;left:56px;top:124px;width:18px;height:10px;border-radius:50%;background:{{ ch.cheek }}"></div>
+                      <div style="position:absolute;left:126px;top:124px;width:18px;height:10px;border-radius:50%;background:{{ ch.cheek }}"></div>
+                      <div style="position:absolute;left:92px;top:122px;width:16px;height:9px;box-sizing:border-box;border:3px solid {{ ch.eye }};border-top:none;border-radius:0 0 12px 12px"></div>
+                      <div style="position:absolute;left:78px;top:136px;width:44px;height:22px;box-sizing:border-box;border:3px solid {{ ch.acc }};border-top:none;border-radius:0 0 22px 22px"></div>
+                      <div style="position:absolute;left:87px;top:150px;width:26px;height:20px;box-sizing:border-box;border-radius:5px;background:{{ ch.accBg }}"></div>
+                      <div style="position:absolute;left:92px;top:156px;width:6px;height:6px;border-radius:50%;background:{{ ch.badgeInk }}"></div>
+                      <div style="position:absolute;left:100px;top:158px;width:9px;height:3px;border-radius:2px;background:{{ ch.badgeInk }}"></div>
+                    </sc-if>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;padding:16px 12px 12px">
+                  <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ ch.styleName }}</span>
+                  <span style="font-size:18px;font-weight:600;letter-spacing:-0.015em">{{ ch.title }}</span>
+                  <span style="font-size:14px;line-height:1.5;color:rgba(var(--ink),0.65);text-wrap:pretty">{{ ch.note }}</span>
+                  <sc-if value="{{ ch.hasPitch }}">
+                    <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;padding:16px;border-radius:20px;background:rgba(var(--glass),calc(0.08*var(--ga)));border:1px solid rgba(var(--ink),0.12)">
+                      <span style="font-size:15px;line-height:1.5;text-wrap:pretty">{{ ch.msg }}</span>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px">
+                        <span style="display:flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;background:var(--btn);color:var(--btnfg);font-size:14px;font-weight:600">{{ ch.yes }}</span>
+                        <span style="display:flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid rgba(var(--ink),0.2);font-size:14px;color:rgba(var(--ink),0.75)">{{ ch.no }}</span>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b.isCrewHero }}">
+          <div style="width:100%;box-shadow:0 30px 80px rgba(0,0,0,calc(0.35*var(--sa)));border-radius:32px">{{ b.hero }}</div>
+        </sc-if>
+
+        <sc-if value="{{ b.isCrew }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+            <sc-for list="{{ b.list }}" as="a">
+              <div style="display:flex;flex-direction:column;border-radius:28px;overflow:hidden;color:#ffffff;background:radial-gradient(circle at 50% 28%,#14445A 0%,#0C2B38 55%,#0A2029 100%);border:1px solid rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.12),0 24px 60px rgba(0,0,0,calc(0.3*var(--sa)))">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:48px 24px 28px">
+                  {{ a.art }}
+                  <span style="display:flex;align-items:center;gap:7px;padding:6px 14px;border-radius:999px;background:#ffffff;color:#0B1A22;font-size:15px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,0.35);transform:rotate(-2deg)"><span style="width:9px;height:9px;border-radius:50%;background:{{ a.dot }}"></span>{{ a.name }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;padding:20px 28px 28px">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+                    <span style="font-size:32px;font-weight:700;letter-spacing:-0.03em">{{ a.name }}</span>
+                    <span style="padding:5px 14px;border-radius:999px;border:1px solid {{ a.tag }};color:{{ a.tag }};font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">{{ a.dept }}</span>
+                  </div>
+                  <span style="font-size:19px;font-style:italic;line-height:1.4;color:rgba(255,255,255,0.86)">{{ a.quote }}</span>
+                  <sc-if value="{{ a.hasWas }}">
+                    <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6)">Was: {{ a.was }}</span>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ b.isLink }}">
+          <a href="{{ b.url }}" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:clamp(24px,4vw,40px);border-radius:32px;color:var(--fg);background:rgba(var(--glass),calc(0.08*var(--ga)));backdrop-filter:blur(30px) saturate(180%);border:1px solid rgba(var(--ink),0.16);box-shadow:inset 0 1px 0 rgba(var(--hl),0.26),0 30px 80px rgba(0,0,0,calc(0.32*var(--sa)));transition:transform .3s" style-hover="transform:translateY(-4px);opacity:1">
+            <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">{{ b.k }}</span>
+              <span style="font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-0.03em;line-height:1.15;text-wrap:balance">{{ b.title }}</span>
+              <span style="font-size:15px;color:rgba(var(--ink),0.65)">{{ b.text }}</span>
+            </div>
+            <span style="display:flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--btn);color:var(--btnfg);font-size:15px;font-weight:600">{{ b.label }}</span>
+          </a>
+        </sc-if>
+
         <sc-if value="{{ b.isCaption }}">
           <p style="margin:-40px auto 0;max-width:720px;text-align:center;font-size:16px;line-height:1.55;color:rgba(var(--ink),0.65);text-wrap:pretty">{{ b.text }}</p>
         </sc-if>
@@ -432,11 +636,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
     <sc-if value="{{ c.showDecisions }}" hint-placeholder-val="{{ true }}">
     <div data-screen-label="Decisions" style="display:flex;flex-direction:column;gap:32px">
-      <h2 style="margin:0;font-size:clamp(34px,4.2vw,56px);letter-spacing:-0.04em;font-weight:600;line-height:1.02">Decisions <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">&amp; trade-offs</span></h2>
+      <h2 style="margin:0;font-size:clamp(34px,4.2vw,56px);letter-spacing:-0.04em;font-weight:600;line-height:1.02">Decisions <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">&amp; trade-offs</span></h2>
       <sc-for list="{{ c.decisions }}" as="d" hint-placeholder-count="1">
         <div style="padding:clamp(24px,4vw,40px);border-radius:32px;background:rgba(var(--glass),calc(0.06*var(--ga)));backdrop-filter:blur(30px) saturate(180%);border:1px solid rgba(var(--ink),0.14);box-shadow:inset 0 1px 0 rgba(var(--hl),0.24),0 30px 80px rgba(0,0,0,calc(0.3*var(--sa)));display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">Decision</span>
+            <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.6)">Decision</span>
             <span style="font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-0.025em;line-height:1.2;text-wrap:balance">{{ d.title }}</span>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px">
@@ -480,7 +684,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
   <section data-screen-label="More Projects" style="padding:0 0 120px;display:flex;flex-direction:column;gap:32px">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-      <h2 style="margin:0;font-size:clamp(36px,4.6vw,60px);letter-spacing:-0.04em;font-weight:600;line-height:1">More <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">projects</span></h2>
+      <h2 style="margin:0;font-size:clamp(36px,4.6vw,60px);letter-spacing:-0.04em;font-weight:600;line-height:1">More <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">projects</span></h2>
       <a href="AllWork.html" style="font-size:15px;color:rgba(var(--ink),0.75);padding:10px 0">View all my projects →</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,max(300px,calc((100% - 20px)/2))),1fr));gap:20px">
@@ -490,7 +694,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
             <img src="{{ m.thumb }}" alt="{{ m.project }}" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:24px;display:block">
           </sc-if>
           <sc-if value="{{ m.noThumb }}" hint-placeholder-val="{{ false }}">
-            <div style="position:relative;width:100%;aspect-ratio:16/10;border-radius:24px;overflow:hidden"><image-slot id="thumb-beyond" shape="rounded" radius="24" placeholder="Beyond Screens — thumbnail"></image-slot></div>
+            <div style="position:relative;width:100%;aspect-ratio:16/10;border-radius:24px;overflow:hidden"><image-slot id="{{ m.slotId }}" shape="rounded" radius="24" placeholder="{{ m.slotPh }}"></image-slot></div>
           </sc-if>
           <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 16px 12px">
             <div style="display:flex;flex-direction:column;gap:6px">
@@ -502,7 +706,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </a>
       </sc-for>
       <div style="display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:36px;border-radius:32px;background:rgba(var(--glass),calc(0.09*var(--ga)));backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(var(--ink),0.18);box-shadow:inset 0 1px 0 rgba(var(--hl),0.28),0 30px 80px rgba(0,0,0,calc(0.35*var(--sa)));min-height:280px">
-        <span style="font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-0.03em;line-height:1.1">Have a hard problem in AI or enterprise UX? <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">Let's talk.</span></span>
+        <span style="font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-0.03em;line-height:1.1">Have a hard problem in AI or enterprise UX? <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">Let's talk.</span></span>
         <a href="#contact" style="align-self:flex-start;padding:14px 24px;border-radius:999px;background:var(--btn);color:var(--btnfg);font-weight:500;font-size:15px" style-hover="color:var(--btnfg)">Start a conversation</a>
       </div>
     </div>
@@ -511,23 +715,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div data-screen-label="Dark footer zone" style="--ink:255,255,255;--fg:#FFFFFF;--bg:#161618;color:#FFFFFF;background:#161618;box-shadow:0 0 0 100vmax #161618;clip-path:inset(0 -100vmax -100vmax -100vmax)">
   <section id="contact" data-screen-label="Contact" style="padding:0 0 40px">
     <div style="padding:clamp(56px,8vw,96px) 0 0;display:flex;flex-direction:column;gap:56px">
-      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Get in touch</span>
-      <h2 style="margin:0;font-size:clamp(44px,7.4vw,104px);letter-spacing:-0.05em;font-weight:600;line-height:0.98">Let's <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">{{ word }}</span><br>incredible work together.</h2>
+      <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Get in touch</span>
+      <h2 style="margin:0;font-size:clamp(44px,7.4vw,104px);letter-spacing:-0.05em;font-weight:600;line-height:0.98">Let's <span style="font-family:'Nanum Pen Script',Georgia,'Times New Roman',serif;font-weight:400;font-size:1.3em">{{ word }}</span><br>incredible work together.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px;padding-top:32px;border-top:1px solid rgba(var(--ink),0.12)">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Email</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Email</span>
           <a href="mailto:surendra.manekar@gmail.com" style="font-size:17px">surendra.manekar@gmail.com</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Call me</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Call me</span>
           <a href="tel:+917032904279" style="font-size:17px">+91 70329 04279</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Resume</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Resume</span>
           <a href="assets/SuriManekarCV_2026.pdf" target="_blank" rel="noopener" style="font-size:17px">Suri Manekar CV ↗</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Social</span>
+          <span style="font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(var(--ink),0.55)">Social</span>
           <div style="display:flex;flex-wrap:wrap;gap:12px">
             <a href="https://www.linkedin.com/in/suribbles" target="_blank" aria-label="LinkedIn" title="LinkedIn" style="display:flex;width:40px;height:40px;flex:none;color:var(--fg);transition:transform .2s,opacity .2s" style-hover="transform:translateY(-2px);opacity:0.75"><span style="display:block;width:100%;height:100%;background:currentColor;-webkit-mask:url(assets/icon-linkedin.svg) center/contain no-repeat;mask:url(assets/icon-linkedin.svg) center/contain no-repeat"></span></a>
             <a href="https://x.com/suribbles" target="_blank" aria-label="X" title="X" style="display:flex;width:40px;height:40px;flex:none;color:var(--fg);transition:transform .2s,opacity .2s" style-hover="transform:translateY(-2px);opacity:0.75"><span style="display:block;width:100%;height:100%;background:currentColor;-webkit-mask:url(assets/icon-x.svg) center/contain no-repeat;mask:url(assets/icon-x.svg) center/contain no-repeat"></span></a>
@@ -549,7 +753,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;project&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;aict&quot;,&quot;dct&quot;,&quot;gestalt&quot;,&quot;beyond&quot;],&quot;default&quot;:&quot;aict&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;project&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;aict&quot;,&quot;dct&quot;,&quot;gestalt&quot;,&quot;beyond&quot;,&quot;mascot&quot;],&quot;default&quot;:&quot;aict&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 const RID = {"assets/beyond-cohort-1.webp":"a0","assets/beyond-cohort-2.webp":"a1","assets/beyond-cohort-3.webp":"a2","assets/beyond-sketch-3.webp":"a3","assets/beyond-sketch-1.webp":"a4","assets/beyond-sketch-2.webp":"a5","assets/avatar-kartik-04.png":"a6","assets/avatar-kartik-03.png":"a7","assets/avatar-padma-03.jpeg":"a8","assets/aict-keynote.jpg":"a9","assets/aict-overview.jpg":"a10","assets/aict-mind-mapping.jpg":"a11","assets/aict-idea-sketching.jpg":"a12","assets/aict-workshop-output.jpg":"a13","assets/aict-user-journey.jpg":"a14","assets/aict-landing-page.png":"a15","assets/aict-mobile.jpg":"a16","assets/aict-mobile-in-hand.jpg":"a17","assets/aict-ai-summit-singapore.jpg":"a18","assets/dct-hero.jpg":"a19","assets/dct-sketches.jpg":"a20","assets/dct-layers.jpg":"a21","assets/dct-executive-overview.jpg":"a22","assets/dct-interdependency-map.jpg":"a23","assets/dct-drilldown-technology.jpg":"a24","assets/dct-drilldown-workflows.jpg":"a25","assets/dct-poster.jpg":"a26","assets/dct-inside.jpg":"a27","assets/dct-fedex-ceo-dashboard.jpg":"a28","assets/dct-fedex-customer-success.jpg":"a29","assets/gestalt-hero.png":"a30","assets/gestalt-review-workflow.jpg":"a31","assets/gestalt-review-portal.jpg":"a32","assets/gestalt-review-report.jpg":"a33","assets/gestalt-skill-in-use.jpg":"a34","assets/gestalt-banner.png":"a35","assets/Thumb_CaseStudy01.jpg":"a36","assets/thumb-dct.jpg":"a37","assets/thumb-gestalt.jpg":"a38","assets/Gestalt_Demo.mp4":"a39","assets/thumb-beyond-small.jpg":"a40","assets/workshop-tata-motors.jpg":"a41","assets/workshop-adp-ff3.jpg":"a42","assets/iith-students.jpg":"a43","assets/iith-campus.jpg":"a44","assets/cohort-01.jpg":"a45","assets/cohort-02.jpg":"a46","assets/cohort-03.jpg":"a47","assets/cohort-04.jpg":"a48","assets/cohort-05.jpg":"a49","assets/cohort-06.jpg":"a50","assets/cohort-07.jpg":"a51","assets/conf-figma-config.jpg":"a52","assets/conf-servicenow.jpg":"a53","assets/conf-microsoft-uxday.jpg":"a54","assets/conf-amazon.jpg":"a55","assets/brand-kanya-01.jpg":"a56","assets/brand-kanya-02.jpg":"a57","assets/brand-bellpepper-01-v2.jpg":"a58","assets/brand-bellpepper-02.jpg":"a59","assets/brand-dtx.jpg":"a60","assets/sketchnotes-collage.jpg":"a61"};
 const RES = p => { const id = RID[p]; return (id && window.__resources && window.__resources[id]) || p; };
 const F = 'assets/';
@@ -559,9 +763,115 @@ const imgs = (...list) => ({ isImgsGrid: true, list });
 const P = (lead, text) => ({ isP: true, lead, text });
 const L = (title, sub, items) => ({ isList: true, title, sub, items: items.map((x, i) => ({ k: x[2] || String(i + 1).padStart(2, '0'), title: x[0], body: x[1] })) });
 
-const SEC = (k, title, sub) => ({ isSection: true, k, title, sub });
+const SEC = (k, title, sub, big) => ({ isSection: true, k, title, sub, big: !!big, notBig: !big });
 const FILLED = ["beyond-cohort-1","beyond-cohort-2","beyond-cohort-3","beyond-sketch-3","beyond-sketch-1","beyond-sketch-2"];
 const slots = (...list) => ({ isSlots: true, single: list.length === 1, multi: list.length > 1, list: list.map(([id, ph, alt]) => FILLED.includes(id) ? { id, ph, src: RES('assets/' + id + '.webp'), alt: alt || ph } : { id, ph, empty: true }) });
+const PAL = {
+  sd: { main: '#6FD08C', light: '#C4F2D0', dark: '#2F9E5B', deep: '#0B3F33', soft: '#E6F4EA', name: 'L1 ServiceDesk Agent', nick: 'Dash' },
+  hr: { main: '#FFB088', light: '#FFE3D1', dark: '#E07A4E', deep: '#4A2418', soft: '#FCEDE3', name: 'L1 HRSD AI Specialist', nick: 'Pulse' }
+};
+const NAVY = '#032D42';
+const STY = {
+  line: p => ({ styleName: 'Line', note: 'Hand-drawn and honest. Feels human, fades at small sizes.', stage: '#F4EFE4', body: 'transparent', line: '3px solid #1d1d1f', shadow: 'none', blur: 'none', acc: '#1d1d1f', accBg: '#1d1d1f', leaf: 'transparent', eye: '#1d1d1f', eyeHi: '#F4EFE4', cheek: 'rgba(29,29,31,0.14)', badgeInk: '#F4EFE4' }),
+  flat: p => ({ styleName: 'Flat', note: 'Solid shapes, no shading. Scales cleanly to icons and avatars.', stage: p.soft, body: p.main, line: '0 solid transparent', shadow: 'none', blur: 'none', acc: NAVY, accBg: NAVY, leaf: p.dark, eye: NAVY, eyeHi: '#ffffff', cheek: p.dark, badgeInk: '#ffffff' }),
+  clay: p => ({ styleName: 'Soft 3D', note: 'Clay-like volume. The warmest, most “toy, not tool” option.', stage: 'radial-gradient(circle at 50% 35%, #ffffff, ' + p.soft + ')', body: 'radial-gradient(circle at 34% 28%, ' + p.light + ', ' + p.main + ' 52%, ' + p.dark + ')', line: '0 solid transparent', shadow: 'inset -10px -12px 22px rgba(0,0,0,0.16), inset 8px 10px 16px rgba(255,255,255,0.55), 0 22px 34px rgba(0,0,0,0.18)', blur: 'none', acc: '#0E3B52', accBg: 'radial-gradient(circle at 35% 30%, #2C6A88, #032D42)', leaf: 'radial-gradient(circle at 35% 30%, ' + p.light + ', ' + p.dark + ')', eye: NAVY, eyeHi: '#ffffff', cheek: 'rgba(224,90,90,0.35)', badgeInk: '#ffffff' }),
+  glass: p => ({ styleName: 'Glass', note: 'Frosted and luminous. Native to the UI, but can feel cool.', stage: 'radial-gradient(circle at 50% 62%, ' + p.main + ' 0%, ' + p.deep + ' 78%)', body: 'rgba(255,255,255,0.16)', line: '1px solid rgba(255,255,255,0.55)', shadow: 'inset 0 2px 0 rgba(255,255,255,0.55), inset 0 -10px 24px rgba(255,255,255,0.12), 0 24px 40px rgba(0,0,0,0.3)', blur: 'blur(14px) saturate(160%)', acc: 'rgba(255,255,255,0.9)', accBg: 'rgba(255,255,255,0.9)', leaf: 'rgba(255,255,255,0.75)', eye: '#ffffff', eyeHi: p.deep, cheek: 'rgba(255,255,255,0.35)', badgeInk: p.deep })
+};
+const CH = (s, a, extra) => ({ ...STY[s](PAL[a]), sd: a === 'sd', hr: a === 'hr', title: PAL[a].name, scale: 1, ...(extra || {}) });
+const CHARS = ['line', 'flat', 'clay', 'glass'].flatMap(s => ['sd', 'hr'].map(a => CH(s, a)));
+const ce = React.createElement;
+let MUID = 0;
+const MD = (st, ...k) => ce('div', { style: { position: 'absolute', ...st } }, ...k);
+const MC = {
+  dash: { name: 'Dash', main: '#3B8BF0', light: '#A4CFFF', dark: '#1D5BC4', dot: '#3B8BF0', tag: '#5AAEFF', dept: 'IT Service Desk', quote: '\u201cFixed before you finish typing.\u201d', was: 'L1 ServiceDesk Agent' },
+  pulse: { name: 'Pulse', main: '#FF6B6B', light: '#FFB8AD', dark: '#D9434B', dot: '#FF6B6B', tag: '#FF8378', dept: 'HR', quote: '\u201cKeeping your people in rhythm.\u201d', was: 'L1 HRSD AI Specialist' },
+  penny: { name: 'Penny', main: '#F2C14E', light: '#FFE9A3', dark: '#C08A22', dot: '#2FBF71', tag: '#3FD08A', dept: 'Finance', quote: '\u201cEvery penny accounted for.\u201d' },
+  scout: { name: 'Scout', main: '#F0A040', light: '#FFD392', dark: '#C27020', dot: '#F0A040', tag: '#F5A64A', dept: 'Procurement', quote: '\u201cI\u2019ll find the best deal out there.\u201d' },
+  radar: { name: 'Radar', main: '#38C6C6', light: '#A8F3EF', dark: '#1A9196', dot: '#38C6C6', tag: '#3ED0D0', dept: 'Security & Risk', quote: '\u201cI see it before it\u2019s a problem.\u201d' },
+  ace: { name: 'Ace', main: '#9A6BF2', light: '#D2B6FF', dark: '#6B3FD6', dot: '#9A6BF2', tag: '#B590FF', dept: 'CRM & Sales', quote: '\u201cDeal closed.\u201d' },
+  otto: { name: 'Otto', main: '#62D84E', light: '#BDF6AB', dark: '#36A82E', dot: '#62D84E' }
+};
+const mAnim = (n, dur, d, t) => n + ' ' + dur + 's ' + (t || 'ease-in-out') + ' ' + d + 's infinite';
+const mGrad = (id, c) => ce('defs', null, ce('radialGradient', { id, cx: '35%', cy: '30%', r: '80%' }, ce('stop', { offset: '0%', stopColor: c.light }), ce('stop', { offset: '55%', stopColor: c.main }), ce('stop', { offset: '100%', stopColor: c.dark })));
+function mFace(dy, d, light) {
+  const e = light ? '#ffffff' : '#16161a';
+  const eye = x => MD({ left: x, top: 90 + dy, width: 11, height: 13, borderRadius: '50%', background: e, transformOrigin: '50% 50%', animation: mAnim('mBlink', 4.2, d) }, light ? null : MD({ left: 2, top: 2, width: 4, height: 4, borderRadius: '50%', background: '#ffffff' }));
+  return [eye(84), eye(105), MD({ left: 92, top: 106 + dy, width: 16, height: 8, boxSizing: 'border-box', border: '3px solid ' + e, borderTop: 'none', borderRadius: '0 0 10px 10px' })];
+}
+function MASCOT(k, size, dl) {
+  const c = MC[k], id = 'mg' + (++MUID), d = -(dl || 0), big = k === 'otto';
+  const g = 'radial-gradient(circle at 34% 28%, ' + c.light + ', ' + c.main + ' 55%, ' + c.dark + ')';
+  const lg = 'radial-gradient(circle at 36% 30%, ' + c.light + ', ' + c.main + ' 58%, ' + c.dark + ')';
+  const sh = 'inset -8px -10px 18px rgba(0,0,0,0.22), inset 6px 8px 14px rgba(255,255,255,0.3)';
+  const ay = k === 'pulse' ? 70 : big ? 92 : 98;
+  const arm = (x, cx, n) => MD({ inset: 0, transformOrigin: '100px 100px', animation: mAnim(n, 3.2, d) },
+    MD({ left: x, top: ay, width: big ? 40 : 36, height: big ? 38 : 34, borderRadius: '50%', background: lg, boxShadow: sh }),
+    MD({ left: cx, top: ay - 4, width: 14, height: 14, borderRadius: '50%', background: c.main, boxShadow: 'inset -2px -3px 4px rgba(0,0,0,0.2)' }));
+  const foot = x => MD({ left: x, top: 166, width: big ? 40 : 30, height: big ? 18 : 15, borderRadius: '50%', background: 'radial-gradient(circle at 40% 30%, ' + c.main + ', ' + c.dark + ')' });
+  const circle = MD({ left: 42, top: 40, width: 116, height: 116, borderRadius: '50%', background: g, boxShadow: sh });
+  const ring = (x, w) => MD({ left: x, top: x - 2, width: w, height: w, boxSizing: 'border-box', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.38)' });
+  let pre = [], body = [circle], acc = [], face = mFace(0, d);
+  if (k === 'dash') {
+    body.push(MD({ left: 32, top: 24, width: 136, height: 136, boxSizing: 'border-box', borderRadius: '50%', border: '9px solid #1E2B45', borderBottomColor: 'transparent' }),
+      MD({ left: 26, top: 80, width: 22, height: 42, borderRadius: 11, background: 'linear-gradient(180deg,#3A507A,#1A2640)' }),
+      MD({ left: 152, top: 80, width: 22, height: 42, borderRadius: 11, background: 'linear-gradient(180deg,#3A507A,#1A2640)' }));
+    acc.push(MD({ left: 36, top: 118, width: 46, height: 5, borderRadius: 3, background: '#1E2B45', transform: 'rotate(22deg)', transformOrigin: '0 50%' }),
+      MD({ left: 76, top: 130, width: 12, height: 12, borderRadius: '50%', background: '#1E2B45' }),
+      ce('svg', { viewBox: '0 0 24 36', width: 24, height: 36, style: { position: 'absolute', left: 128, top: 116, animation: mAnim('mFlick', 2.6, d), filter: 'drop-shadow(0 0 6px rgba(91,209,91,0.75))' } }, ce('path', { d: 'M15 0 L2 20 L11 20 L8 36 L22 13 L13 13 Z', fill: '#5BD15B' })));
+  } else if (k === 'pulse') {
+    body = [MD({ left: 34, top: 34, width: 132, height: 120, transformOrigin: '50% 50%', animation: mAnim('mBeat', 1.6, d), filter: 'drop-shadow(0 0 18px rgba(255,107,107,0.5))' },
+      ce('svg', { viewBox: '0 0 120 108', width: 132, height: 120, style: { position: 'absolute', left: 0, top: 0 } }, mGrad(id, c), ce('path', { d: 'M60 106 C 22 80 2 58 2 34 C 2 14 17 2 35 2 C 46 2 55 8 60 17 C 65 8 74 2 85 2 C 103 2 118 14 118 34 C 118 58 98 80 60 106 Z', fill: 'url(#' + id + ')' })),
+      ce('svg', { viewBox: '0 0 132 30', width: 132, height: 30, style: { position: 'absolute', left: 0, top: 54 } }, ce('polyline', { points: '4,16 46,16 54,16 60,3 68,28 74,9 80,16 128,16', fill: 'none', stroke: '#ffffff', strokeWidth: 3.5, strokeLinejoin: 'round', strokeLinecap: 'round', strokeDasharray: 160, style: { animation: mAnim('mDraw', 2.4, d, 'linear') } })))];
+    face = mFace(-16, d);
+  } else if (k === 'penny') {
+    pre.push(MD({ left: 42, top: 47, width: 116, height: 116, borderRadius: '50%', background: c.dark }));
+    body.push(MD({ left: 56, top: 54, width: 88, height: 88, boxSizing: 'border-box', borderRadius: '50%', border: '3px solid rgba(255,255,255,0.45)', boxShadow: '0 0 0 2px rgba(160,105,20,0.22)' }));
+    acc.push(MD({ left: 0, top: 54, width: 200, textAlign: 'center', fontSize: 28, fontWeight: 800, lineHeight: 1, color: '#2FBF71', textShadow: '0 2px 0 rgba(0,0,0,0.15)', animation: mAnim('mHop', 1.8, d) }, '$'));
+    face = mFace(14, d);
+  } else if (k === 'scout') {
+    pre.push(MD({ left: 88, top: 28, width: 24, height: 16, borderRadius: 5, background: lg }));
+    body.push(MD({ left: 56, top: 54, width: 88, height: 88, borderRadius: '50%', background: 'radial-gradient(circle at 45% 35%, #FFFBF2, #F6E4C6)', boxShadow: 'inset 0 3px 8px rgba(0,0,0,0.18)' }),
+      MD({ left: 0, top: 58, width: 200, textAlign: 'center', fontSize: 10, fontWeight: 700, lineHeight: 1, color: '#9A6420' }, 'N'));
+    acc.push(MD({ left: 97, top: 68, width: 6, height: 28, background: '#E8452C', clipPath: 'polygon(50% 0,100% 100%,0 100%)', transformOrigin: '50% 100%', animation: mAnim('mWiggle', 3, d) }));
+    face = mFace(16, d);
+  } else if (k === 'radar') {
+    pre.push(MD({ left: 98, top: 18, width: 4, height: 26, borderRadius: 2, background: '#1E3A44' }),
+      MD({ left: 92, top: 6, width: 16, height: 16, borderRadius: '50%', background: 'radial-gradient(circle at 35% 30%, #D6FFD0, #6FE06F)', animation: mAnim('mGlow', 2, d) }));
+    body.push(MD({ left: 42, top: 40, width: 116, height: 116, borderRadius: '50%', overflow: 'hidden' },
+      MD({ inset: 0, background: 'conic-gradient(from 0deg, rgba(150,240,150,0) 0deg, rgba(150,240,150,0) 280deg, rgba(150,240,150,0.7) 360deg)', animation: 'mSpin 4s linear ' + d + 's infinite' })),
+      ring(62, 76), ring(80, 40));
+  } else if (k === 'ace') {
+    body = [MD({ left: 42, top: 44, width: 116, height: 114, borderRadius: 34, background: 'radial-gradient(circle at 30% 25%, ' + c.light + ', ' + c.main + ' 55%, ' + c.dark + ')', boxShadow: sh })];
+    acc.push(MD({ left: 134, top: 18, width: 42, height: 42, animation: mAnim('mTwinkle', 2.8, d), filter: 'drop-shadow(0 0 10px rgba(212,245,138,0.85))' },
+      ce('svg', { viewBox: '-2 -2 44 44', width: 42, height: 42 }, ce('polygon', { points: '20,0 25,14 40,15 28,24 32,39 20,30 8,39 12,24 0,15 15,14', fill: '#D4F58A', stroke: '#D4F58A', strokeWidth: 3, strokeLinejoin: 'round' }))));
+    face = mFace(4, d);
+  } else if (k === 'otto') {
+    body = [MD({ left: 20, top: 16, width: 160, height: 160, transformOrigin: '50% 50%', animation: mAnim('mSway', 4, d), filter: 'drop-shadow(0 0 26px rgba(98,216,78,0.45))' },
+      ce('svg', { viewBox: '0 0 160 160', width: 160, height: 160, style: { position: 'absolute', left: 0, top: 0 } }, mGrad(id, c), ce('path', { d: 'M80 14 Q 100 60 146 80 Q 100 100 80 146 Q 60 100 14 80 Q 60 60 80 14 Z', fill: 'url(#' + id + ')', stroke: 'url(#' + id + ')', strokeWidth: 24, strokeLinejoin: 'round' })),
+      MD({ left: 50, top: 50, width: 60, height: 60, borderRadius: '50%', background: 'radial-gradient(circle at 40% 35%, #1A4560, #061826)', boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.5)' }))];
+    face = mFace(0, d, true);
+  }
+  const feet = big ? [foot(56), foot(104)] : [foot(66), foot(104)];
+  return ce('div', { style: { position: 'relative', width: size, height: size, flex: 'none' } },
+    ce('div', { style: { position: 'absolute', left: 0, top: 0, width: 200, height: 200, transform: 'scale(' + (size / 200) + ')', transformOrigin: '0 0' } },
+      MD({ left: 50, top: 182, width: 100, height: 12, borderRadius: '50%', background: 'rgba(0,0,0,0.45)', filter: 'blur(5px)', animation: mAnim('mShadow', 3.2, d) }),
+      MD({ inset: 0, animation: mAnim('mFloat', 3.2, d) }, ...feet, ...pre,
+        arm(big ? 4 : 14, big ? 36 : 40, 'mWaveL'), arm(big ? 156 : 150, big ? 150 : 146, 'mWaveR'),
+        ...body, ...face, ...acc)));
+}
+const mPill = (k, big) => ce('div', { style: { display: 'flex', alignItems: 'center', gap: big ? 10 : 7, padding: big ? '10px 22px' : '6px 14px', borderRadius: 999, background: '#ffffff', color: '#0B1A22', fontSize: big ? 26 : 15, fontWeight: 700, lineHeight: 1.1, boxShadow: '0 8px 20px rgba(0,0,0,0.35)', transform: 'rotate(-2deg)' } },
+  ce('span', { style: { width: big ? 14 : 9, height: big ? 14 : 9, borderRadius: '50%', background: MC[k].dot } }), MC[k].name);
+const HERO = [['dash', .125, .57, 150], ['pulse', .255, .25, 150], ['penny', .355, .66, 150], ['otto', .5, .40, 250], ['scout', .645, .66, 150], ['radar', .745, .25, 150], ['ace', .875, .57, 150]];
+function CrewHero() {
+  const W = 1100, H = 540, ref = React.useRef(null);
+  const [sc, setSc] = React.useState(1);
+  React.useEffect(() => { const el = ref.current; if (!el) return; const ro = new ResizeObserver(() => setSc(Math.min(1.3, el.clientWidth / W))); ro.observe(el); return () => ro.disconnect(); }, []);
+  const items = React.useMemo(() => HERO.map(([k, x, y, s], i) => ce('div', { key: k, style: { position: 'absolute', left: x * W - s / 2, top: y * H - s / 2, width: s, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: k === 'otto' ? 8 : 2 } }, MASCOT(k, s, i * 0.45), mPill(k, k === 'otto'))), []);
+  return ce('div', { ref, style: { position: 'relative', width: '100%', height: H * sc, borderRadius: 32, overflow: 'hidden', background: 'radial-gradient(ellipse at 50% 30%, #11455A 0%, #0B2733 55%, #081A22 100%)' } },
+    ce('div', { style: { position: 'absolute', left: 0, top: 0, width: W, height: H, transform: 'scale(' + sc + ')', transformOrigin: '0 0' } },
+      MD({ left: '22%', top: '20%', width: '56%', height: '62%', boxSizing: 'border-box', borderRadius: '50%', border: '1.5px solid rgba(98,216,78,0.3)' }), ...items));
+}
+const CREW = ['dash', 'pulse', 'penny', 'scout', 'radar', 'ace'].map((k, i) => ({ ...MC[k], hasWas: !!MC[k].was, art: MASCOT(k, 200, i * 0.6) }));
 const CASES = {
   aict: {
     title: 'Measure, Govern, Secure AI across your enterprise',
@@ -759,10 +1069,106 @@ const CASES = {
     ],
     tldr: [], impact: [], decisions: [], noTldr: true, noDecisions: true, noQuote: true,
     quote: { pre: '', hl: '', post: '', name: '', role: '', img: '' }
+  },
+  mascot: {
+    title: 'Every AI agent needs a face people will adopt without any fear.',
+    project: 'ServiceNow AI Agents · Character Concept', year: '2026',
+    roleLine: 'Point of view · Character design · AI trust',
+    thumb: RES('assets/thumb-mascot-small.jpg'),
+    summary: 'AI companies are giving their products soft, round, big-eyed faces because the technology asks for more trust than any app before it — and design history shows exactly how to earn that trust. Here is why ServiceNow AI Agents need one too, and what it could look like.',
+    hasContext: true,
+    context: 'Sep-Oct 2026 · A self-initiated exploration by Suri Manekar.',
+    scope: ['AI Agent Branding', 'Character Design', 'UX Psychology', 'Trust & Adoption'],
+    role: ['Principal Designer', 'Illustrator', 'Author'],
+    tldr: [
+      { k: 'Role', v: 'Principal Designer · self-initiated concept' },
+      { k: 'Scope', v: 'Characterization of function based AI Agents for ServiceNow including their already running L1 ServiceDesk Agent and L1 HRSD AI Specialist.' },
+      { k: 'Timeline', v: 'Sep – Oct 2026' },
+      { k: 'The idea', v: 'Agents that act on our behalf need trust, not just attention. A character built on baby-schema proportions lowers the threat signal so employees give the agent a fair first try.' },
+      { k: 'Key decision', v: 'Derive each character from one signature shape of its job — a headset and lightning bolt for Dash (ServiceDesk), a heart and heartbeat for Pulse (HR), a coin for Penny (Finance), a compass for Scout (Procurement), a scanner for Radar (Security & Risk), a star for Ace (Sales) — instead of a generic blob.' },
+      { k: 'Explored', v: 'Paper sketches → Eight styles (Line, Flat, Soft 3D, Glass, Pixel, Sketchy, Gradient glow, Sticker) → a final family of seven: Otto and six specialist agents.' }
+    ],
+    impact: ['Self-initiated concept', '7 agent characters', '4 style directions'],
+    decisions: [{ title: 'Let the job draw the character',
+      chose: 'One role-specific shape per agent, wrapped in the same baby-schema recipe — big head, low-set eyes, rounded everything.',
+      didnt: 'A single generic mascot for all agents, or another pastel blob indistinguishable from every other AI brand.',
+      why: 'Employees meet several agents across ServiceNow. A shape tied to the job tells people what each agent does before it says a word, and keeps the family consistent while each member stays distinct.',
+      cost: 'Every new agent needs its own shape study, and some roles do not have an obvious visual symbol.' }],
+    blocks: [
+      SEC('01', 'Why ServiceNow AI Agents need a better brand', 'A job code is not a personality.', true),
+      P('Meet the agents: ', '“L1 ServiceDesk Agent” and “L1 HRSD AI Specialist.” Accurate names — and completely forgettable. They describe a support tier, not a helper. They read like an org chart, and they look like every other line item in a service catalog.'),
+      { isChallenge: true, b1: 'ServiceNow AI Agents', text: ' are moving from answering questions to acting on our behalf — resetting accounts, updating payroll, raising requests. Employees meet them at stressful moments: locked out of a laptop, a missing payslip, a letter due tomorrow. ', b2: 'A faceless tier code asks for trust without giving people anything to trust.' },
+      P('', 'Look around and the pattern is hard to miss. AI companies are giving their products soft, round, big-eyed faces. The easy explanation is branding — look friendly, appeal to Gen Z, stand out. But TikTok, Facebook and WhatsApp became some of the most used products in history without ever needing a face. Nobody asked for a WhatsApp mascot. So why does AI suddenly need one?'),
+      SEC('02', 'Who is already doing this', 'Every AI wants a face.', true),
+      { isExamples: true, items: [
+        { id: 'mascot-openai', src: RES('assets/mascot-dots.jpg'), alt: 'OpenAI Dots — Alfred, a fuzzy yellow character with round glasses', ph: 'OpenAI — Dots (drop screenshot)', co: 'OpenAI', title: 'OpenAI’s Dots', body: 'Fuzzy, round characters like Alfred — big eyes, no sharp edges — giving the assistant a face you want to talk to.' },
+        { id: 'mascot-mico', src: RES('assets/mascot-mico.jpg'), alt: 'Microsoft Copilot Mico — a glowing, smiling blob', ph: 'Microsoft — Copilot Mico (drop screenshot)', co: 'Microsoft', title: 'Copilot’s Mico', body: 'A floating blob with a smile that reacts as you talk. Soft, round and deliberately un-robotic.' },
+        { id: 'mascot-meta', src: RES('assets/mascot-muse.jpg'), alt: 'Meta Muse AI — a plush character on a handheld device', ph: 'Meta — Muse AI (drop screenshot)', co: 'Meta', title: 'Meta’s Muse AI', body: 'A soft, friendly presence gives the assistant a personality — character doing the work a logo never could.' }] },
+      P('', 'They aren’t copying each other, they are just following an adoption recipe. And that recipe starts almost a hundred years ago, with a technology, people were genuinely scared of.'),
+      SEC('03', '1926: when electricity needed a friend', 'Reddy Kilowatt, “Your Electric Servant.”', true),
+      img1(I('reddy-kilowatt.jpg', 'Reddy Kilowatt — Alabama Power’s 1926 “Universal Servant” ad, with creator Ashton B. Collins Sr.')),
+      P('By the mid-1920s, ', 'electricity had reached American homes, but people were wary of it. Electricity meant fires, shocks and the electric chair. Families used it sparingly — often for little more than a single bulb at night.'),
+      { isReddy: true },
+      { isStatement: true, text: 'The word “servant” turns a dangerous, invisible force into something that works for you.' },
+      SEC('04', 'The science: baby schema', 'Why this particular shape works.', true),
+      L('Kindchenschema', 'In 1943, biologist Konrad Lorenz described a set of features that switch off our sense of threat and switch on our urge to protect. We respond to them almost automatically — on an infant, a puppy or a cartoon.', [
+        ['A large head', 'Big relative to the body — the whole character is mostly head.'],
+        ['A high, rounded forehead', 'Open space above the eyes reads as young and harmless.'],
+        ['Big eyes, set low', 'Eyes below the middle of the face are the strongest single cue.'],
+        ['Soft, round shapes', 'Chubby cheeks, short limbs, no sharp corners anywhere.']]),
+      SEC('05', 'The UX & psychology angle', 'Answering needs attention. Acting needs trust.', true),
+      P('', 'AI is moving from chatbots — ask a question, read an answer — to agents that read your inbox, book your flights and spend your money. That is a much bigger ask. Picture two permission pop-ups asking for your saved cards. Same request. Different face.'),
+      { isPerm: true },
+      L('What the face is really doing', 'Five effects designers can use — and must use responsibly.', [
+        ['Threat comes first', 'The brain checks “is this dangerous?” before “is this useful?”. Until the threat signal drops, no feature gets a fair hearing.'],
+        ['Anthropomorphism', 'Give something eyes and people assign it intent. A face makes an agent feel like it is working with you, not on you.'],
+        ['Servant framing', 'Like Reddy Kilowatt, a small helper signals who is in control — you are.'],
+        ['Familiarity', 'One consistent character across Teams, Slack, the portal and email builds recognition, and recognition builds comfort.'],
+        ['Trust calibration', 'A friendly face lowers our guard. Pair it with clear permissions, previews and undo, so trust matches what the agent can actually do.']]),
+      { isStatement: true, text: 'Nobody hands their credit card to something that feels like it’s here to replace them.' },
+      SEC('06', 'Groundwork for ServiceNow AI Agents', 'Let the job draw the character.', true),
+      P('Start from the role, not from a blob. ', 'Generic mascots melt into the same pastel shape. Instead, I pulled one signature shape from each agent’s work and built the baby schema around it — so the character tells you what it does before it says a word.'),
+      L('Shape vocabulary', 'Current names, and the shapes hiding inside them.', [
+        ['L1 ServiceDesk Agent → Dash', 'Headset + lightning bolt. The headset says “I’m on the line, right now”; the bolt says the fix is fast.', 'SD'],
+        ['L1 HRSD AI Specialist → Pulse', 'Heart + heartbeat line. HR is the pulse of the company: care for people, in a steady rhythm across the employee lifecycle.', 'HR']]),
+      SEC('07', 'Paper sketches', 'Thinking with a pen first.', true),
+      { isImgsTall: true, list: [I('mascot-sketch-dash-01.jpg', 'Paper sketch — Dash explorations in a dotted notebook, with pen'), I('mascot-sketch-dash-02.jpg', 'Paper sketch — Dash: headphone & mic, lightning icon, all rounded')] },
+      P('I’m still an old-school artist at heart. ', 'I scribble my thoughts and ideas on paper first — then share those sketches with AI as the brief, to shape exactly what I have in mind.'),
+      SEC('08', 'Style options', 'One sketch, eight finishes.', true),
+      P('This is where AI earns its place. ', 'Once the sketch locked the shape — round body, headset, mic, a calm smile — AI turned that single idea into eight finished styles in minutes. Exploration that once took days of rendering now takes a coffee break, so the time goes into judging, not drawing.'),
+      { isStyles: true, list: [
+        { n: 'Style 01', src: RES('assets/mascot-style-line.jpg'), alt: 'Dash — Hand-drawn line art style', title: 'Hand-drawn line art', note: 'Feels human and honest, but fades at small sizes.' },
+        { n: 'Style 02', src: RES('assets/mascot-style-flat.jpg'), alt: 'Dash — Flat style', title: 'Flat', note: 'Solid shapes, no shading. Scales cleanly to icons and avatars.' },
+        { n: 'Style 03', src: RES('assets/mascot-style-3d.jpg'), alt: 'Dash — Soft 3D style', title: 'Soft 3D', final: true, note: 'Clay-like volume. The warmest, most “toy, not tool” option.' },
+        { n: 'Style 04', src: RES('assets/mascot-style-glass.jpg'), alt: 'Dash — Glass style', title: 'Glass', note: 'Frosted and luminous. Native to the UI, but can feel cool.' },
+        { n: 'Style 05', src: RES('assets/mascot-style-pixel.jpg'), alt: 'Dash — Pixel style', title: 'Pixel', note: 'Playful and retro, but breaks down at bigger sizes.' },
+        { n: 'Style 06', src: RES('assets/mascot-style-sketchy.jpg'), alt: 'Dash — Sketchy style', title: 'Sketchy', note: 'Hand-drawn energy, but feels unfinished in a product.' },
+        { n: 'Style 07', src: RES('assets/mascot-style-gradients.jpg'), alt: 'Dash — Gradient glow style', title: 'Gradient glow', note: 'Vibrant and modern, but tied to a trend that will date.' },
+        { n: 'Style 08', src: RES('assets/mascot-style-sticker.jpg'), alt: 'Dash — Sticker style', title: 'Sticker', note: 'Great for merch and swag, but falls flat as a real presence.' }
+      ] },
+      P('', 'Same sketch, same character — only the finish changes. Seeing them side by side made the trade-offs obvious: Flat for small surfaces like avatars and status icons, Soft 3D for warmth and personality wherever the agent introduces itself.'),
+      SEC('09', 'Final characters', 'Meet Otto and the crew.', true),
+      P('One family, six specialists, one conductor. ', 'Every character follows the same baby-schema recipe (round body, low-set eyes, stubby arms and feet) and carries a single shape from its job. Otto sits at the centre and coordinates the crew.'),
+      { isCrewHero: true, tight: true, hero: ce(CrewHero) },
+      { ...img1(I('mascot-crew-office.jpg', 'The crew at work — Dash, Pulse, Radar, Penny, Scout and Ace at their desks in an isometric office')), tight: true },
+      { isCrew: true, tight: true, list: CREW },
+      { isLink: true, tight: true, k: 'Product page', title: 'Meet the NowSquad — Otto and the crew.', text: 'Read more about the new AI Agents.', url: 'https://suribbles.github.io/NowSquad.html', label: 'Go to Product Page ↗' },
+      { isLink: true, tight: true, k: 'Read the post', title: 'Every AI agent needs a face people will adopt without any fear.', text: 'Oct 6, 2026 · Suri Manekar', url: 'https://www.linkedin.com/in/suribbles', label: 'Read on LinkedIn ↗' },
+      SEC('10', 'It won’t stop at mascots', 'The smarter AI gets, the softer it has to look.', true),
+      P('', 'The softening is already spreading beyond characters. AI brands are using hand-drawn graphics, deliberately imperfect videos, and writing that feels warm and human rather than polished and machine-made.'),
+      L('Why this is a UX Designer’s job', 'Adoption of AI agents is not only an engineering problem. It is a trust problem — and trust is designed.', [
+        ['Design the first impression', 'Character, name, voice and motion decide whether an employee tries the agent at all.'],
+        ['Match the face to the capability', 'A cute mascot can make a capable tool easier to approach. It can also make a product seem safer than it is. The face should match what is behind it.'],
+        ['Design the moments of consent', 'Permissions, previews, confirmations and undo turn borrowed trust into earned trust.'],
+        ['Measure adoption, not delight', 'Repeat usage, deflection and hand-off rates tell us whether the face is actually working.']]),
+      { isStatementHl: true, text: 'So the next time an AI product greets you with a smiling blob, remember ', hl: 'Reddy Kilowatt.' }
+    ],
+    noQuote: true,
+    quote: { pre: '', hl: '', post: '', name: '', role: '', img: '' }
   }
 };
 
-const TITLES = { aict: 'AI Control Tower', dct: 'Digital Control Tower', gestalt: 'Project Gestalt', beyond: 'Beyond Screens' };
+const TITLES = { aict: 'AI Control Tower', dct: 'Digital Control Tower', gestalt: 'Project Gestalt', beyond: 'Beyond Screens', mascot: 'AI Agent Mascots' };
 class Component extends DCLogic {
   wmPanelRef = React.createRef();
   wmTrigRef = React.createRef();
@@ -816,10 +1222,10 @@ class Component extends DCLogic {
     this.key = key;
     const c0 = CASES[key] || CASES.aict;
     const gallery = [];
-    const blocks = c0.blocks.map(b => (b.isImgs1 || b.isImgsGrid || b.isImgBare || b.isSlots || b.isImgs4 || b.isImgs2) ? { ...b, list: b.list.map(im => { if (b.isSlots && !im.src) return im; const idx = gallery.length; gallery.push(im); return { ...im, open: () => this.setState({ lb: idx }) }; }) } : b);
+    const blocks = c0.blocks.map(b => (b.isImgsTall || b.isImgs1 || b.isImgsGrid || b.isImgBare || b.isSlots || b.isImgs4 || b.isImgs2) ? { ...b, list: b.list.map(im => { if (b.isSlots && !im.src) return im; const idx = gallery.length; gallery.push(im); return { ...im, open: () => this.setState({ lb: idx }) }; }) } : b);
     this.galleryLen = gallery.length;
-    const isImgB = x => x && (x.isImgs1 || x.isImgsGrid || x.isImgBare || x.isSlots || x.isImgs4 || x.isImgs2);
-    blocks.forEach((x, i) => { x.pull = i > 0 && isImgB(x) && isImgB(blocks[i - 1]) ? 'calc(16px - clamp(56px,8vw,96px))' : '0px'; });
+    const isImgB = x => x && (x.isStyles || x.isImgsTall || x.isImgs1 || x.isImgsGrid || x.isImgBare || x.isSlots || x.isImgs4 || x.isImgs2);
+    blocks.forEach((x, i) => { x.pull = i > 0 && x.tight && blocks[i - 1].tight ? 'calc(-0.5 * clamp(56px,8vw,96px))' : i > 0 && isImgB(x) && isImgB(blocks[i - 1]) ? 'calc(16px - clamp(56px,8vw,96px))' : '0px'; });
     const c = { ...c0, blocks, roleItems: (c0.role || []).map((name, i) => ({ name, sep: i > 0 })) };
     const lbi = this.state.lb, cur = lbi != null ? gallery[lbi] : null;
     const lbVals = {
@@ -829,7 +1235,7 @@ class Component extends DCLogic {
       lbClose: () => this.setState({ lb: null }), lbStop: (e) => e.stopPropagation(),
       lbPrev: (e) => { e && e.stopPropagation(); this.step(-1); }, lbNext: (e) => { e && e.stopPropagation(); this.step(1); }
     };
-    const more = Object.keys(CASES).filter(k => k !== key).map(k => ({ ...CASES[k], hasThumb: !CASES[k].noThumb, noThumb: !!CASES[k].noThumb, href: 'CaseStudy.html?p=' + k }));
+    const more = Object.keys(CASES).filter(k => k !== key).map(k => ({ ...CASES[k], hasThumb: !CASES[k].noThumb, noThumb: !!CASES[k].noThumb, href: 'CaseStudy.html?p=' + k, slotId: 'thumb-' + k, slotPh: CASES[k].project + ' — thumbnail' }));
     const qa = c.quote && c.quote.img ? React.createElement('img', { src: c.quote.img, alt: c.quote.name, style: { width: 52, height: 52, flex: 'none', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(var(--ink),0.25)' } }) : null;
     return { ...lbVals, quoteAvatar: qa, ...this.respVals(), ...this.themeVals(), word: ['design', 'build', 'create'][this.state.w || 0], wmBox: this.wmBox, wmText: this.wmText, c: { hasContext: false, ...c, showTldr: !c.noTldr, showDecisions: !c.noDecisions, showQuote: !c.noQuote, quoteImgs: c.quote && c.quote.img ? [{ src: c.quote.img, alt: c.quote.name }] : [] }, more };
   }

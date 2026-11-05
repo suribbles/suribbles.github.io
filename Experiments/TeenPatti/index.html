@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Age-old Teen Patti variations from different regions of India, curated and designed by Suri Manekar.">
+</head>
+<body style="margin:0">
+<title>Teen Patti Variations</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mukta:wght@400;600;700&family=Yatra+One&display=swap">
+<style>
+/* Layout concept: a real poker-size deck laid out on a table. Every card is drawn in mm,
+   so the same markup prints at true size and scales up for the screen.
+   Each category is one Indian block-print pigment plus its own suit symbol. */
+:root {
+  --bg: #e9e8ef; --fg: #1d1b33; --muted: #5a5870; --chip: #f7f6fa; --line: #c5c3d2;
+  --paper: #fffaf0; --ink: #1d1b33; --link: #2a3990;
+  --foot-bg: #12111b; --foot-fg: #f2f1f7; --foot-muted: #b3b1c6; --foot-line: #33313f;
+  --display: "Yatra One", "Mukta", Georgia, serif;
+  --body: "Mukta", "Noto Sans", system-ui, sans-serif;
+  --u: min(1.3mm, calc((100vw - 32px) / 63.5));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #16151f; --fg: #eeedf5; --muted: #a5a3b8; --chip: #24232f; --line: #3d3b4d; --link: #aeb8f7; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #16151f; --fg: #eeedf5; --muted: #a5a3b8; --chip: #24232f; --line: #3d3b4d; --link: #aeb8f7; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+
+.page { max-width: 1340px; margin: 0 auto; padding-block: 32px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 28px; }
+.masthead { display: grid; justify-items: center; gap: 12px; text-align: center; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.3rem, 7vw, 4.4rem); line-height: 1.04; margin: 0; text-wrap: balance; }
+.lede { margin: 0; max-width: 60ch; font-size: clamp(1rem, 2.2vw, 1.14rem); color: var(--muted); text-wrap: pretty; }
+.lede a { color: var(--link); font-weight: 600; }
+.page a:focus-visible, .shuffle-btn:focus-visible, .site-footer a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 3px; }
+
+.hero-zone { display: grid; justify-items: center; gap: 22px; overflow-x: clip; padding-block: 18px 8px; min-width: 0; margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); }
+.stage { cursor: pointer; --u: max(3.6px, min(calc(84vw / 63.5), calc(68vh / 88.9), 6.2px)); position: relative; width: calc(var(--u) * 63.5); height: calc(var(--u) * 88.9); perspective: 1600px; }
+.stack { position: absolute; inset: 0; }
+.stack .card, .face .card { border-radius: calc(var(--u) * 3); box-shadow: 0 3px 6px rgb(10 8 30 / .24), 0 16px 34px rgb(10 8 30 / .22); }
+.stack-a { transform: translateX(-3%) rotate(-4deg); }
+.stack-b { transform: translateX(3%) rotate(4deg); }
+.flipper { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .3s ease-in-out; }
+.flipper.flipped { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.face.rear { transform: rotateY(180deg); }
+.riffle .stack-a { animation: riffle-a .31s ease-in-out 2; }
+.riffle .stack-b { animation: riffle-b .31s ease-in-out 2; }
+@keyframes riffle-a { 50% { transform: translateX(-62%) rotate(-9deg); } }
+@keyframes riffle-b { 50% { transform: translateX(62%) rotate(9deg); } }
+@media (prefers-reduced-motion: reduce) { .flipper { transition: none; } .riffle .stack-a, .riffle .stack-b { animation: none; } }
+.hero-actions { display: grid; justify-items: center; gap: 8px; text-align: center; }
+.shuffle-btn { font-family: var(--display); font-size: 1.3rem; line-height: 1; color: var(--bg); background: var(--fg); border: 0; border-radius: 999px; min-height: 52px; padding: 12px 44px; cursor: pointer; transition: transform .12s ease; }
+.shuffle-btn:hover { transform: translateY(-1px); }
+.shuffle-btn:active { transform: translateY(1px); }
+.shuffle-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.jump { color: var(--link); font-size: .94rem; font-weight: 600; }
+
+.all-cards { display: grid; gap: 20px; scroll-margin-top: 20px; padding-top: 24px; border-top: 1px solid var(--line); min-width: 0; }
+.all-head { display: grid; justify-items: center; gap: 2px; text-align: center; }
+.all-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 4.5vw, 2.5rem); line-height: 1.1; margin: 0; }
+.empty { margin: 0; text-align: center; color: var(--muted); }
+
+.site-footer { background: var(--foot-bg); color: var(--foot-fg); }
+.site-footer a { color: inherit; }
+.foot-inner { max-width: 1340px; margin: 0 auto; padding-block: 40px 28px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px 40px; }
+.foot-item { display: grid; gap: 4px; min-width: 0; }
+.foot-label { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--foot-muted); }
+.foot-value { font-size: 1.06rem; font-weight: 600; overflow-wrap: anywhere; }
+.foot-note { font-size: .88rem; color: var(--foot-muted); }
+.foot-note:empty { display: none; }
+.foot-legal { grid-column: 1 / -1; margin: 0; padding-top: 18px; border-top: 1px solid var(--foot-line); font-size: .92rem; color: var(--foot-muted); }
+
+.filters { display: grid; justify-items: center; gap: 10px; min-width: 0; }
+.filter-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+.filter-label { width: auto; min-width: 84px; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.chip { font: inherit; font-size: .94rem; font-weight: 600; color: var(--fg); background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; min-height: 36px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.chip svg { width: 15px; height: 15px; flex: none; color: var(--c, currentColor); --paper-cut: var(--chip); }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); --paper-cut: var(--fg); }
+.chip[aria-pressed="true"] svg { color: var(--bg); }
+.chip:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+.filter-panel { display: grid; justify-items: center; gap: 10px; min-width: 0; }
+.filter-toggle { display: none; }
+@media (max-width: 720px) {
+  .filters { justify-items: stretch; }
+  .filter-toggle { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 8px 16px; font: inherit; color: var(--fg); text-align: left; background: var(--chip); border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+  .filter-toggle:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+  .ft-label { flex: none; font-weight: 700; }
+  .ft-summary { flex: 1; min-width: 0; font-size: .92rem; color: var(--muted); }
+  .ft-chevron { flex: none; width: 18px; height: 18px; transition: transform .15s ease; }
+  .filter-toggle[aria-expanded="true"] .ft-chevron { transform: rotate(180deg); }
+  .filter-panel { display: none; justify-items: stretch; gap: 14px; padding: 4px 2px; }
+  .filters.open .filter-panel { display: grid; }
+  .filter-row { justify-content: flex-start; }
+  .filter-label { width: 100%; min-width: 0; }
+  .page { gap: 20px; padding-block: 24px 40px; }
+}
+.count { margin: 0; font-size: .94rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.deck { min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, calc(var(--u) * 63.5)); justify-content: center; gap: 22px; }
+.deck .card { border-radius: calc(var(--u) * 3); box-shadow: 0 2px 4px rgb(10 8 30 / .22), 0 10px 22px rgb(10 8 30 / .16); }
+
+/* Card: colours are printed pigment, so they stay the same in both themes */
+.card {
+  width: calc(var(--u) * 63.5); height: calc(var(--u) * 88.9); max-width: 100%;
+  font-size: calc(var(--u) * 3); line-height: 1.3; color: var(--ink);
+  background-color: var(--c); position: relative; isolation: isolate;
+  padding: calc(var(--u) * 3); overflow: hidden;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.pat { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.c-rank  { --c: #2a3990; --deep: #2a3990; }
+.c-wild  { --c: #c2185b; --deep: #ad1350; }
+.c-extra { --c: #00757f; --deep: #00626b; }
+.c-table { --c: #e2a00c; --deep: #835a00; }
+.c-party { --c: #d4431c; --deep: #b5350f; }
+.c-classics { --c: #7a1f33; --deep: #7a1f33; }
+.c-ref   { --c: #1d1b33; --deep: #1d1b33; }
+
+.panel { position: relative; height: 100%; background: var(--paper); border-radius: calc(var(--u) * 1.6); padding: calc(var(--u) * 3); display: flex; flex-direction: column; gap: calc(var(--u) * 2.2); overflow: hidden; --paper-cut: var(--paper); }
+.panel > * { position: relative; }
+.watermark { position: absolute; right: calc(var(--u) * -7); bottom: calc(var(--u) * 4); width: calc(var(--u) * 42); height: calc(var(--u) * 42); color: var(--c); opacity: .09; --paper-cut: var(--paper); }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 1em; color: var(--deep); }
+.index { display: flex; align-items: center; gap: calc(var(--u) * 1.2); font-family: var(--display); font-size: calc(var(--u) * 7.4); line-height: 1; }
+.index svg { width: calc(var(--u) * 6); height: calc(var(--u) * 6); }
+.eyebrow { font-size: calc(var(--u) * 2.25); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-align: right; }
+.name { font-family: var(--display); font-weight: 400; font-size: calc(var(--u) * 6.1); line-height: 1.08; margin: 0; min-height: 2.16em; display: flex; align-items: flex-end; text-wrap: balance; }
+.deal { display: grid; gap: calc(var(--u) * 1); padding-block: calc(var(--u) * 1.8); border-block: calc(var(--u) * .25) solid var(--deep); }
+.deal-label { font-weight: 700; font-size: calc(var(--u) * 3.1); line-height: 1.15; }
+.deal-cards { display: flex; align-items: center; gap: calc(var(--u) * .7); height: calc(var(--u) * 5.4); color: var(--deep); }
+.mini { width: calc(var(--u) * 3.7); height: calc(var(--u) * 5.4); border-radius: calc(var(--u) * .55); background: var(--deep); flex: none; }
+.mini.up { background: transparent; border: calc(var(--u) * .4) solid var(--deep); }
+.plus { font-weight: 700; font-size: calc(var(--u) * 3.6); line-height: 1; padding-inline: calc(var(--u) * .4); }
+.how { margin: 0; flex: 1; font-size: calc(var(--u) * 3.3); }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 1em; font-size: calc(var(--u) * 2.6); font-weight: 700; line-height: 1.1; }
+.level { display: flex; align-items: center; gap: calc(var(--u) * .7); color: var(--deep); }
+.pip { width: calc(var(--u) * 2); height: calc(var(--u) * 2); transform: rotate(45deg); border: calc(var(--u) * .35) solid var(--deep); flex: none; }
+.pip.on { background: var(--deep); }
+.level b { margin-left: calc(var(--u) * .9); }
+.origin { font-weight: 600; color: #4c4a60; }
+
+/* Hand rankings card */
+.ranks { margin: 0; padding: 0; list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.ranks li { display: flex; justify-content: space-between; align-items: baseline; gap: .6em; border-bottom: calc(var(--u) * .15) solid #cfccd9; padding-block: calc(var(--u) * 1); }
+.ranks li:last-child { border-bottom: 0; }
+.ranks b { font-size: calc(var(--u) * 2.9); }
+.ranks span { font-size: calc(var(--u) * 2.9); font-weight: 600; white-space: nowrap; }
+.ranks i { font-style: normal; color: #ad1350; }
+.terms { margin: 0; padding: 0; list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-between; font-size: calc(var(--u) * 2.9); line-height: 1.22; }
+.terms li { display: flex; align-items: center; gap: calc(var(--u) * 1.6); }
+.terms .key { flex: none; width: calc(var(--u) * 11.5); display: flex; align-items: center; gap: calc(var(--u) * .6); font-weight: 700; }
+.terms .key .mini { --deep: #1d1b33; }
+.ref-note { margin: 0; font-size: calc(var(--u) * 2.5); color: #4c4a60; }
+
+/* Card back */
+.back { background-color: #2a3990; display: flex; align-items: center; justify-content: center; position: relative; }
+.back::before { content: ""; z-index: 1; position: absolute; inset: calc(var(--u) * 3); border: calc(var(--u) * .5) solid #fffaf0; border-radius: calc(var(--u) * 1.6); }
+.medal { z-index: 1; position: relative; width: calc(var(--u) * 41); height: calc(var(--u) * 41); border-radius: 50%; background: #fffaf0; color: #2a3990; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--u) * 1); box-shadow: 0 0 0 calc(var(--u) * 1) #2a3990, 0 0 0 calc(var(--u) * 1.5) #fffaf0; }
+.medal svg { width: calc(var(--u) * 15); height: calc(var(--u) * 12); }
+.medal strong { font-family: var(--display); font-weight: 400; font-size: calc(var(--u) * 6.8); line-height: 1.1; }
+.medal strong span { display: block; text-align: center; }
+.medal .medal-sub { font-size: calc(var(--u) * 4.8); }
+.medal small { font-family: "Dancing Script", cursive; font-size: calc(var(--u) * 3.1); font-weight: 700; line-height: 1.1; }
+
+#sheets { display: none; }
+@page { size: 63.5mm 88.9mm; margin: 0; }
+@media print {
+  :root { --u: 1mm; --bg: #fff; --fg: #000; color-scheme: light; }
+  body { background: #fff; }
+  .page, .site-footer { display: none; }
+  #sheets { display: block; }
+  .sheet { width: 63.5mm; height: 88.9mm; overflow: hidden; break-after: page; break-inside: avoid; }
+  .sheet:last-child { break-after: auto; }
+}
+</style>
+
+<main class="page">
+  <header class="masthead">
+    <h1>Teen Patti Variations</h1>
+    <p class="lede">Age-old variations from different regions of India curated, designed &amp; brought to you by <a href="https://suriportfolio.in" target="_blank" rel="noopener">Suri Manekar</a></p>
+  </header>
+  <section class="filters" id="filters" aria-label="Filter cards">
+    <button type="button" class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filter-panel">
+      <span class="ft-label">Filters</span>
+      <span class="ft-summary" id="filter-summary">All categories, all difficulties</span>
+      <svg class="ft-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
+    </button>
+    <div class="filter-panel" id="filter-panel">
+      <div class="filter-row" id="cat-filter"><span class="filter-label">Category</span></div>
+      <div class="filter-row" id="diff-filter"><span class="filter-label">Difficulty</span></div>
+    </div>
+  </section>
+  <section class="hero-zone" aria-label="Shuffle for a game">
+    <div class="stage" id="stage">
+      <div class="stack stack-a" id="stack-a" aria-hidden="true"></div>
+      <div class="stack stack-b" id="stack-b" aria-hidden="true"></div>
+      <div class="flipper flipped" id="flipper">
+        <div class="face front" id="hero-front"></div>
+        <div class="face rear" id="hero-rear" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <button type="button" class="shuffle-btn" id="shuffle">Shuffle</button>
+      <p class="count" id="hero-caption" aria-live="polite">Please click Shuffle to choose a variation.</p>
+      <a class="jump" href="#all-cards">See all the cards</a>
+    </div>
+  </section>
+  <section class="all-cards" id="all-cards" aria-labelledby="all-title">
+    <div class="all-head">
+      <h2 id="all-title">All the Cards</h2>
+      <p class="count" id="count" aria-live="polite"></p>
+    </div>
+    <p class="empty" id="deck-empty" hidden>No games match this category and difficulty. Try another combination.</p>
+    <div class="deck" id="deck"></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-item"><span class="foot-label">Contact</span><a class="foot-value" href="tel:+917032904279">+91 7032904279</a></div>
+    <div class="foot-item"><span class="foot-label">Email</span><a class="foot-value" href="mailto:surendra.manekar@gmail.com">surendra.manekar@gmail.com</a></div>
+    <div class="foot-item"><span class="foot-label">Print your own</span><a class="foot-value" id="pdf-link" href="Cards-A3.pdf" download="Cards-A3.pdf">Download printable PDF</a><span class="foot-note" id="pdf-note" aria-live="polite"></span></div>
+    <p class="foot-legal">All rights reserved. © Suri Manekar.</p>
+  </div>
+</footer>
+<div id="sheets" aria-hidden="true"></div>
+
+<script>
+const glyphs = {
+  rank: '<path d="M12 2l8 9H4z"/><path d="M12 22l-8-9h16z"/>',
+  wild: '<path d="M12 1l2.4 6.5 5.4-3.3-3.3 5.4L23 12l-6.5 2.4 3.3 5.4-5.4-3.3L12 23l-2.4-6.5-5.4 3.3 3.3-5.4L1 12l6.5-2.4-3.3-5.4 5.4 3.3z"/>',
+  extra: '<g stroke="var(--paper-cut)" stroke-width="1"><rect x="7.5" y="3" width="9" height="15" rx="1.5" transform="rotate(-28 12 21)"/><rect x="7.5" y="3" width="9" height="15" rx="1.5" transform="rotate(28 12 21)"/><rect x="7.5" y="3" width="9" height="15" rx="1.5"/></g>',
+  table: '<rect x="9" y="1.5" width="6" height="6" rx="1"/><rect x="1.5" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/><rect x="16.5" y="9" width="6" height="6" rx="1"/><rect x="9" y="16.5" width="6" height="6" rx="1"/>',
+  party: '<path d="M.5 12C5 5 9 4 12 4s7 1 11.500 8C19 19 15 20 12 20s-7-1-11.500-8z"/><circle cx="12" cy="12" r="5" fill="var(--paper-cut)"/><circle cx="12" cy="12" r="2.500"/>',
+  classics: '<path d="M3 20L1.500 7l6 4.500L12 3l4.500 8.500 6-4.500L21 20z"/>',
+  ref: '<path d="M12 2l8 10-8 10-8-10z"/>'
+};
+const svg = k => `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${glyphs[k]}</svg>`;
+
+const cats = [
+  { id: 'rank',  name: 'Rank Twists',   c: '#2a3990' },
+  { id: 'wild',  name: 'Wild Cards',    c: '#c2185b' },
+  { id: 'extra', name: 'Extra Cards',   c: '#00757f' },
+  { id: 'table', name: 'Table Cards',   c: '#e2a00c' },
+  { id: 'party', name: 'Party Formats', c: '#d4431c' },
+  { id: 'classics', name: 'Classics', c: '#7a1f33' }
+];
+const catName = Object.fromEntries(cats.map(c => [c.id, c.name]));
+
+/* h = cards dealt to the hand, face-down. u = open cards: face-up or on the table. */
+const games = [
+  ['rank','Classic Teen Patti',1,3,0,'Deal 3 cards','Easy','Everyone antes, then bets blind or after seeing their cards. Seen players bet double the blind stake. The best hand at showdown wins.'],
+  ['rank','Muflis',1,3,0,'Deal 3 cards','Easy','The rankings are reversed, so the lowest hand wins. A high card beats a pair, and a trail is the worst hand.'],
+  ['rank','High-Low Declare',0,3,0,'Deal 3 cards','Hard','Before showdown, secretly declare "high" or "low" using a chip in your fist. The best high hand and best low hand split the pot.'],
+
+  ['wild','AK47',1,3,0,'Deal 3 cards','Easy','All Aces, Kings, 4s and 7s are wild. Use them as any card, then play as Classic.'],
+  ['wild','Low Wild',1,3,0,'Deal 3 cards','Medium',"The lowest card in your hand is wild, along with any other cards of that rank. Each player's wild card is different."],
+
+  ['extra','Best of Four',1,4,0,'Deal 4 cards','Easy','Look at your four cards and discard one before betting. Then play your best three as Classic.'],
+  ['extra','Seven Card',0,7,0,'Deal 7 cards','Medium','Choose your best three from seven cards, with a maximum of 7 players. Trails and sequences appear often, so the bar for a winning hand is high.'],
+  ['extra','Pass Left',0,4,0,'Deal 4 cards','Hard','Pass one card face-down to the player on your left, then look at the card you received. Discard one and play your best three.'],
+
+  ['table','Stud Patti',1,1,2,'Deal 1 down + 2 up','Medium','Deal one card at a time, with a betting round after each. Everyone can see two of your cards, so reading opponents is key.'],
+  ['table','Kill Card',1,3,0,'Deal 3 cards','Medium','After the first betting round, flip one table card. Anyone holding that rank folds immediately, and their bets stay in the pot.'],
+  ['table','Cross Patti',0,2,5,'Deal 2 + 5 on the table','Hard','Five table cards are laid out in a cross and revealed in stages. Combine your cards with cards from one line of the cross only.'],
+
+  ['party','Last One Standing',0,3,0,'Deal 3 cards','Medium','Everyone shows after each round, and the lowest hand is eliminated. Redeal until one player remains and takes the pot.'],
+  ['party','Bluff Call',0,3,0,'Deal 3 cards','Hard','Declare your hand aloud, truthfully or not, and raise. If challenged and caught lying, you pay double; if you told the truth, the challenger pays double.'],
+  ['party','Auction Patti',0,3,1,'Deal 3 + 1 auctioned','Hard','Flip one card and have players bid chips for it, with the money going into the pot. The winner makes their best three from all four cards.'],
+
+  ['rank','Closest to 555',1,3,0,'Deal 3 cards','Medium','Ace = 1, 10 and picture cards = 0, and the rest are face value. Arrange your cards as digits, and the number closest to 555 wins.'],
+  ['rank','Closest to 21',0,3,0,'Deal 3 cards','Easy','Ace = 1, picture cards = 10, and the rest are face value. Add up your three cards, and the total closest to 21 wins, whether over or under.'],
+  ['rank','Odd Sequence',1,3,0,'Deal 3 cards','Medium','Sequences use alternate cards instead of consecutive ones, such as A-3-5 or 9-J-K. A normal run like J-Q-K no longer counts as a sequence.'],
+  ['rank','Even Sequence',0,3,0,'Deal 3 cards','Medium','Sequences use alternate even cards, such as 2-4-6 or 8-10-Q. A normal run like J-Q-K no longer counts as a sequence.'],
+  ['rank','Picture Parade',0,3,0,'Deal 3 cards','Easy','The hand with the most Jacks, Queens and Kings wins. Ties go to the highest picture card. If nobody has one, the highest card wins.'],
+
+  ['wild','Lallan mein Kallan',0,5,0,'Deal 5 cards','Medium','Keep your cards in the order dealt. A black card between two reds is wild. If you have no wild card, you fold. The rest play their best three.'],
+  ['wild','Kallan mein Lallan',0,5,0,'Deal 5 cards','Medium','Keep your cards in the order dealt. A red card between two blacks is wild. If you have no wild card, you fold. The rest play their best three.'],
+  ['wild','LGBTQ+',0,5,0,'Deal 5 cards','Medium','Any pair in your hand is wild. You must hold at least one pair to stay in, or you fold. Discard your extra cards and play your best three.'],
+  ['wild','Card-Color-Burst',0,3,3,'Deal 3 + 3 on the table','Hard','Lay 3 table cards face-down. The first card\'s rank is a joker, the second card\'s color is a joker, and anyone holding the third card\'s rank is burst and folds.'],
+  ['wild','Jokers at 10-20-30',0,3,3,'Deal 3 + 3 on the table','Medium','Lay 3 joker cards face-down. The first opens when the pot reaches 10, the second at 20, and the third at 30. Each one makes its rank wild.'],
+  ['wild','In-Out',0,3,3,'Deal 3 + 3 on the table','Hard','Open 3 jokers on the table. In turn, say in or out. If you say out, your cards replace the jokers. Those still in compare hands using the final jokers. The best hand takes the pot, and losers pay that amount in.'],
+
+  ['extra','3-2-1',1,6,0,'Deal 6 cards','Hard','Split your cards into a 3-card Royal, a 2-card "imagine one" game, and a 1-card highest-wins game. Bet on each in that order. Win 2 of 3 to take the pot. If three players win one each, split it.'],
+  ['extra','1-2-3 Shopping',0,3,0,'Deal 3 cards','Hard','Three optional rounds follow the deal. Pay 1: discard one, then draw one. Pay 2: draw one, then discard one. Pay 3: draw two, then discard two. Then play normally.'],
+  ['extra','Forced Swap',0,3,0,'Deal 3 cards','Easy','After the first betting round, everyone must swap their highest card for one from the deck. A strong hand can fall apart here.'],
+
+  ['table','Poker',0,3,2,'Deal 3 + 2 on the table','Medium','You hold 3 cards and share 2 table cards. Together they make your 5-card hand. Poker rankings apply, so a Royal Flush is the top hand.'],
+  ['table','Trading Floor',0,2,2,'Deal 2 closed + 2 open','Hard','All four cards form your game. In turn, players may trade open cards only, offering money plus one or both of their open cards for another player\'s. Then play normally.'],
+  ['table','Bonus Match',0,3,1,'Deal 3 + 1 on the table','Easy','Flip one table card after the first betting round. Anyone holding that rank collects one stake from every other player. Then play as Classic.'],
+
+  ['party','All Open',0,3,0,'Deal 3 cards','Medium','Without looking, hold all three cards on your forehead facing out. You can see everyone\'s game except your own. Read the reactions, be honest, and play as Royal.'],
+  ['party','Sudden Death',0,8,0,'Split the whole deck','Easy','Hold your equal pack between ring finger and thumb, and keep dropping cards until someone yells stop. Pick the highest card you have left. The highest card wins.'],
+  ['party','Changing Variation',0,3,0,'Deal as the card says','Hard','After every round, pick a card from this deck. That game becomes the rules for the next round, so nobody can settle into one style.'],
+  ['party','Red Light Green Light',0,3,3,'Deal 3 + 3 on the table','Hard','Open 3 table cards as three piles. When a player folds, their 3 cards go on the piles, one each. If a pile ends in a black card, all its cards are wild. If it ends in red, none are. You may use only one pile at a time.'],
+
+  ['rank','Middle Card',0,3,0,'Deal 3 cards','Medium','Sort your hand from high to low, and only the middle card counts. The highest middle card wins, and the top card breaks ties.'],
+  ['rank','Trail Trap',0,3,0,'Deal 3 cards','Medium','Play as Classic, but a Trail is now the worst hand, and a Pure Sequence is the best. If you hold a Trail, you must bluff or fold.'],
+  ['wild','Personal Joker',0,3,1,'Deal 3 + 1 face-up','Medium','Each player gets one extra face-up card, which is not part of their hand. Cards in your hand matching its rank are wild for you only.'],
+  ['wild','Changing Joker',0,3,0,'Deal 3 cards','Hard','Flip a new card after each betting round. Its rank replaces the previous wild rank, so hand values keep shifting.'],
+  ['extra','Second Chance',0,3,0,'Deal 3 cards','Medium','Once per hand, you may throw in your whole hand and pay double the stake for three new cards. Those are your final cards.'],
+  ['extra','Build-Up',0,5,0,'Deal 5, one at a time','Medium','Deal one card at a time, with a betting round after the third, fourth and fifth cards. At showdown, play your best three.'],
+  ['extra','Show One, Drop One',0,4,0,'Deal 4 cards','Medium','Discard one card, then show one of your remaining three to the table. Bet as Classic with that card visible to everyone.'],
+  ['extra','Scrap Heap',0,5,0,'Deal 5 cards','Hard','Discard two cards face-up on the table. In turn, you may pay one stake to swap one of your cards with any discard. Then play as Classic.'],
+  ['table','Table Takeover',0,3,3,'Deal 3 + 3 on the table','Medium','Three table cards form a shared hand. At showdown, play either your own hand or the table hand. Players with the same winning hand split the pot.'],
+  ['table','Table Draft',0,2,4,'Deal 2 + 1 per player on the table','Medium','Lay out one table card per player. In turn, pay one stake to take one as your third card. Taken cards are gone, so later players choose from fewer.'],
+  ['table','Pay to Peek',0,3,1,'Deal 3 + 1 on the table','Medium','One table card stays face-down. Pay one stake to look at it privately. It is shown at showdown, and everyone plays their best three of four.'],
+  ['table','Two Boards',0,2,6,'Deal 2 + 6 on the table','Hard','Lay out two rows of 3 table cards. Make a best-three hand with each row, using your own cards as well. Each row wins half the pot.'],
+  ['party','Silent Patti',0,3,0,'Deal 3 cards','Easy','Play as Classic with no talking. Bet by pointing at chips only. Anyone who speaks pays one stake into the pot.'],
+  ['party','Musical Hands',0,3,0,'Deal 3 cards','Medium','After the first betting round, everyone passes their whole hand to the left. Keep betting on the hand you now hold.'],
+  ['party','Partners',0,3,0,'Deal 3 cards','Medium','Play in teams of two, and show your partner one card. Each team uses its stronger hand, and the winners share the pot.'],
+
+  ['classics','Banko',1,1,2,'Deal 2 open + 1 more','Medium','The dealer opens two cards. Bet that the next card falls between them, with a minimum of one counter. Win and collect your bet from the pot. Lose and pay it in.'],
+  ['classics','Simple Royal',1,3,0,'Deal 3 cards','Easy','The plain game with no jokers or extra cards. Bet blind or seen. When two players are left, either can pay for a show, and the best hand wins.'],
+  ['classics','Side Show Flash',1,3,0,'Deal 3 cards','Medium','A seen player may ask the previous seen player for a side show. If they accept, you compare hands privately, and the lower hand folds.'],
+  ['classics','Pot Limit',1,3,0,'Deal 3 cards','Easy','Agree a pot limit before the deal. When the pot reaches it, betting stops, and all remaining players show.'],
+  ['classics','4X Boot',1,3,0,'Deal 3 cards','Easy','Everyone antes four times the usual boot, while stakes stay normal. A big pot from the start makes folding harder.'],
+  ['classics','All Seen',0,3,0,'Deal 3 cards','Easy','Everyone looks at their cards before betting, so there are no blind players. All players bet the same stake.'],
+  ['classics','Two-Blind Start',0,3,0,'Deal 3 cards','Easy','Nobody may look at their cards for the first two betting rounds. After that, you may look and bet as seen.'],
+  ['classics','Dealer\'s Boot',0,3,0,'Deal 3 cards','Easy','Only the dealer pays the boot, at the full table amount. The deal rotates every hand, so everyone pays in turn.'],
+  ['classics','Kitty Rollover',0,3,0,'Deal 3 cards','Medium','If two hands tie at showdown, nobody wins. The pot rolls over to the next hand, and everyone antes again.'],
+  ['classics','Show Penalty',0,3,0,'Deal 3 cards','Medium','Anyone asking for a show must pay double the stake. If you ask and lose, you also pay the winner one extra stake.']
+].map(([cat, name, trad, h, u, deal, level, how]) => ({ cat, name, trad, h, u, deal, level, how }))
+ .map((g, i) => ({ ...g, i })).sort((a, b) => cats.findIndex(c => c.id === a.cat) - cats.findIndex(c => c.id === b.cat) || a.i - b.i);
+
+const seen = {};
+games.forEach(g => { g.n = seen[g.cat] = (seen[g.cat] || 0) + 1; });
+
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const pips = l => { const n = ['Easy','Medium','Hard'].indexOf(l) + 1; return [1,2,3].map(i => `<span class="pip${i <= n ? ' on' : ''}"></span>`).join(''); };
+const minis = (n, cls) => Array.from({ length: n }, () => `<span class="mini${cls}"></span>`).join('');
+
+const gameCard = g => `<article class="card c-${g.cat}" data-cat="${g.cat}" data-level="${g.level}"><div class="panel">
+  <div class="watermark">${svg(g.cat)}</div>
+  <div class="top"><div class="index">${g.n}${svg(g.cat)}</div><div class="eyebrow">${catName[g.cat]}</div></div>
+  <h2 class="name"><span>${esc(g.name)}</span></h2>
+  <div class="deal"><div class="deal-cards" aria-hidden="true">${minis(g.h, '')}${g.u ? `<span class="plus">+</span>${minis(g.u, ' up')}` : ''}</div><div class="deal-label">${g.deal}</div></div>
+  <p class="how">${esc(g.how)}</p>
+  <div class="foot"><div class="level">${pips(g.level)}<b>${g.level}</b></div><div class="origin">${g.trad ? '★ Traditional' : 'House rule'}</div></div>
+</div></article>`;
+
+const ranks = [
+  ['Trail', 'A♠ A<i>♥</i> A<i>♦</i>'],
+  ['Pure Sequence', 'Q<i>♥</i> K<i>♥</i> A<i>♥</i>'],
+  ['Sequence', '4♠ 5<i>♦</i> 6♣'],
+  ['Color', '2♣ 7♣ J♣'],
+  ['Pair', '9♠ 9<i>♦</i> K<i>♥</i>'],
+  ['High Card', 'A<i>♦</i> 8♠ 3♣']
+];
+const refCard = `<article class="card c-ref" data-cat="ref" data-level="ref"><div class="panel">
+  <div class="top"><div class="index">${svg('ref')}</div><div class="eyebrow">Reference</div></div>
+  <h2 class="name"><span>The Ranking of Hands</span></h2>
+  <ol class="ranks">${ranks.map(([a, b]) => `<li><b>${a}</b><span>${b}</span></li>`).join('')}</ol>
+  <p class="ref-note">Strongest at the top. Use this order unless a card says otherwise.</p>
+</div></article>`;
+
+const backCard = `<article class="card c-rank back"><div class="medal">
+  <svg viewBox="0 0 30 24" fill="currentColor" aria-hidden="true"><g stroke="#fffaf0" stroke-width="1"><rect x="10" y="2" width="10" height="16" rx="1.500" transform="rotate(-24 15 24)"/><rect x="10" y="2" width="10" height="16" rx="1.500" transform="rotate(24 15 24)"/><rect x="10" y="2" width="10" height="16" rx="1.500"/></g></svg>
+  <strong><span lang="hi">तीन पत्ती</span><span class="medal-sub">Variations</span></strong><small>designed by Suribbles</small>
+</div></article>`;
+
+const refShell = (name, body) => `<article class="card c-ref" data-cat="ref" data-level="ref"><div class="panel">
+  <div class="top"><div class="index">${svg('ref')}</div><div class="eyebrow">Reference</div></div>
+  <h2 class="name"><span>${name}</span></h2>${body}
+</div></article>`;
+const guideCard = refShell('How to Use This Deck', `<ul class="terms">
+  <li><span class="key"><span class="mini"></span></span><span>Dealt to each player, face-down</span></li>
+  <li><span class="key"><span class="mini up"></span></span><span>Open, or laid on the table</span></li>
+  <li><span class="key"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span><span>Difficulty: one diamond is Easy, three is Hard</span></li>
+  <li><span class="key">★</span><span>Traditional: widely played, though rules vary</span></li>
+  <li><span class="key">House</span><span>A home-game version. Adjust it as you like</span></li>
+</ul><p class="ref-note">Agree the stakes first. Pick a card, and play that game for the round.</p>`);
+const termsCard = refShell('The Betting Terms', `<ul class="terms">
+  ${[['Boot','The ante everyone pays before the deal'],['Blind','Betting without looking at your cards'],['Seen','Betting after looking at your cards'],['Chaal','Your bet on your turn'],['Pack','To fold and leave the hand'],['Show','Comparing hands at the end']].map(([a,b]) => `<li><span class="key">${a}</span><span>${b}</span></li>`).join('')}
+</ul>`);
+/* Block-print pattern drawn as vector shapes so it stays sharp in print */
+let patPath = '';
+for (let x = 0; x <= 64; x += 4) for (let y = 0; y <= 92; y += 4) {
+  patPath += `M${x + 2} ${y + .75}l1.25 1.25-1.25 1.25-1.25-1.25zM${x - .42} ${y}a.42 .42 0 1 0 .84 0a.42 .42 0 1 0-.84 0z`;
+}
+document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="pat" fill="#fff" fill-opacity=".34" d="${patPath}"/></defs></svg>`);
+const withPat = html => html.replace(/(<article class="card[^>]*>)/, '$1<svg class="pat" viewBox="0 0 63.5 88.9" preserveAspectRatio="none" aria-hidden="true"><use href="#pat"/></svg>');
+const backFace = withPat(backCard);
+const all = [refCard, guideCard, termsCard].concat(games.map(gameCard)).map(withPat);
+
+/* Screen deck and filters */
+const deck = document.getElementById('deck');
+deck.innerHTML = all.join('');
+const state = { cat: 'all', level: 'all' };
+
+function apply() {
+  let shown = 0;
+  deck.querySelectorAll('.card').forEach(el => {
+    const isRef = el.dataset.cat === 'ref';
+    const show = isRef ? state.cat === 'all' && state.level === 'all'
+      : (state.cat === 'all' || el.dataset.cat === state.cat) && (state.level === 'all' || el.dataset.level === state.level);
+    el.hidden = !show;
+    if (show && !isRef) shown++;
+  });
+  document.getElementById('count').textContent = shown ? `Showing ${shown} of ${games.length} games` : '';
+  document.getElementById('deck-empty').hidden = shown > 0;
+  document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(state[b.dataset.key] === b.dataset.val)));
+  document.getElementById('filter-summary').textContent = `${state.cat === 'all' ? 'All categories' : catName[state.cat]}, ${state.level === 'all' ? 'all difficulties' : state.level}`;
+}
+function addChip(rowId, key, val, label, icon, c) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'chip'; b.id = `f-${key}-${val}`; b.dataset.key = key; b.dataset.val = val;
+  b.innerHTML = (icon ? svg(icon) : '') + `<span>${label}</span>`;
+  if (c) b.style.setProperty('--c', c);
+  b.addEventListener('click', () => { state[key] = val; apply(); syncHero(); });
+  document.getElementById(rowId).appendChild(b);
+}
+addChip('cat-filter', 'cat', 'all', 'All');
+cats.forEach(c => addChip('cat-filter', 'cat', c.id, c.name, c.id, c.c));
+['all','Easy','Medium','Hard'].forEach(l => addChip('diff-filter', 'level', l, l === 'all' ? 'All' : l));
+
+/* Hero card: draws from a shuffled pile, so no game repeats until the pile runs out */
+const flipper = document.getElementById('flipper');
+const stage = document.getElementById('stage');
+const heroFront = document.getElementById('hero-front');
+const shuffleBtn = document.getElementById('shuffle');
+const heroCaption = document.getElementById('hero-caption');
+document.getElementById('hero-rear').innerHTML = backFace;
+document.getElementById('stack-a').innerHTML = backFace;
+document.getElementById('stack-b').innerHTML = backFace;
+const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const matches = g => (state.cat === 'all' || g.cat === state.cat) && (state.level === 'all' || g.level === state.level);
+let pile = [], drawn = 0, current = null, busy = false, started = false;
+const startPrompt = 'Please click Shuffle to choose a variation.';
+
+function newPile() {
+  pile = games.filter(matches);
+  for (let i = pile.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pile[i], pile[j]] = [pile[j], pile[i]];
+  }
+  if (pile.length > 1 && pile[0] === current) [pile[0], pile[1]] = [pile[1], pile[0]];
+  drawn = 0;
+}
+function nextGame() {
+  if (drawn >= pile.length) newPile();
+  return pile.length ? pile[drawn++] : null;
+}
+function showGame(g) {
+  current = g;
+  heroFront.innerHTML = withPat(gameCard(g));
+  heroCaption.textContent = `${g.name}: card ${drawn} of ${pile.length} in this shuffle`;
+}
+function showEmpty() {
+  current = null;
+  flipper.classList.add('flipped');
+  shuffleBtn.disabled = true;
+  heroCaption.textContent = 'No games match this category and difficulty. Try another combination.';
+}
+function shuffleDeck() {
+  if (busy) return;
+  const g = nextGame();
+  if (!g) { showEmpty(); return; }
+  started = true;
+  shuffleBtn.disabled = false;
+  if (calm) { showGame(g); flipper.classList.remove('flipped'); return; }
+  busy = true;
+  flipper.classList.add('flipped');
+  setTimeout(() => { stage.classList.add('riffle'); showGame(g); }, 300);
+  setTimeout(() => { stage.classList.remove('riffle'); flipper.classList.remove('flipped'); }, 930);
+  setTimeout(() => { busy = false; if (!pile.length || !matches(current)) syncHero(); }, 1240);
+}
+function syncHero() {
+  if (busy) return;
+  const stillFits = current && matches(current);
+  newPile();
+  if (!pile.length) { showEmpty(); return; }
+  shuffleBtn.disabled = false;
+  if (!started) { heroCaption.textContent = startPrompt; return; }
+  if (stillFits) {
+    pile.splice(pile.indexOf(current), 1);
+    pile.unshift(current);
+    drawn = 1;
+    showGame(current);
+    return;
+  }
+  shuffleDeck();
+}
+const filterToggle = document.getElementById('filter-toggle');
+filterToggle.addEventListener('click', () => {
+  const open = document.getElementById('filters').classList.toggle('open');
+  filterToggle.setAttribute('aria-expanded', String(open));
+});
+shuffleBtn.addEventListener('click', shuffleDeck);
+stage.addEventListener('click', () => { if (!shuffleBtn.disabled) shuffleDeck(); });
+apply();
+newPile();
+
+/* On a normal website the PDF link works by itself. Inside the Claude viewer, plain downloads are blocked, so the viewer's save prompt handles it. */
+(async () => {
+  if (!window.claude || !window.claude.use) return;
+  const downloads = await window.claude.use('downloads');
+  if (!downloads) return;
+  const note = document.getElementById('pdf-note');
+  document.getElementById('pdf-link').addEventListener('click', async e => {
+    e.preventDefault();
+    note.textContent = 'Preparing the PDF…';
+    try {
+      const res = await fetch('Cards-A3.pdf');
+      if (!res.ok) throw new Error('missing');
+      await downloads.save({ filename: 'Cards-A3.pdf', data: await res.blob() });
+      note.textContent = '';
+    } catch (err) {
+      note.textContent = err && err.code === 'declined' ? '' : 'The PDF could not be downloaded here. Please try again.';
+    }
+  });
+})();
+
+/* Print pages: one card per page at true card size. The back comes first, then every front. */
+document.getElementById('sheets').innerHTML = [backFace].concat(all).map(c => `<section class="sheet">${c}</section>`).join('');
+</script>
+
+</body>
+</html>

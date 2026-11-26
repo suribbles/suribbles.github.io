@@ -8,21 +8,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<meta name="description" content="OneCollective design system and brand guidelines by Suri Manekar: the Three Feathers logo, Coastal Grove colour palette, Fraunces and Inter typography, components and Instagram templates for GoodCrowd, GoodThread and GoodBlend.">
+<meta name="description" content="OneCollective, a Health &amp; fitness focused brand - brainchild of Three Powerful Women Entrepreneurs - Ashu, Preeti &amp; Vanya, each focused on different parts of the overall wholistic approach of OneCollective. Three Feathers logo, Coastal Grove colour palette, Fraunces and Inter typography, components and Instagram templates for GoodCrowd, GoodThread and GoodBlend.">
 <meta name="keywords" content="OneCollective, design system, brand guidelines, brand identity, logo, Three Feathers, Coastal Grove palette, Fraunces, Inter, typography, colour palette, GoodCrowd, GoodThread, GoodBlend, wellness brand, fitness workshops, yoga, eco workout wear, plastic-free activewear, healthy smoothies, Instagram templates, Suri Manekar">
 <meta name="author" content="Suri Manekar">
 <meta name="theme-color" content="#0F4D46">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OneCollective">
 <meta property="og:title" content="OneCollective Design System &amp; Brand Guidelines">
-<meta property="og:description" content="Rooted wellbeing: move, wear, nourish. Logo, colour, typography, components and Instagram templates for OneCollective, by Suri Manekar.">
 <meta property="og:image" content="thumb.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="OneCollective design system cover: the Three Feathers logo on Sea Green">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OneCollective Design System &amp; Brand Guidelines">
-<meta name="twitter:description" content="Rooted wellbeing: move, wear, nourish. Logo, colour, typography and templates by Suri Manekar.">
 <meta name="twitter:image" content="thumb.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
@@ -267,6 +265,18 @@ svg.mark{overflow:visible}
  .foot .word{font-size:32px}
 }
 .swipe{display:none;font-size:13px;color:var(--muted);margin-top:12px}
+.social{display:grid;gap:12px;justify-items:start}
+.social .fl{font-family:var(--disp);font-style:italic;font-size:20px;color:var(--dune)}
+.sl{display:flex;flex-wrap:wrap;gap:12px}
+.sl a{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 18px 8px 10px;border-radius:999px;border:1px solid rgba(248,246,239,.28);color:var(--ivory);text-decoration:none;transition:background .2s,border-color .2s}
+.sl a:hover{background:rgba(248,246,239,.1);border-color:rgba(248,246,239,.6)}
+.sl a:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+.sl svg{width:34px;height:34px;padding:6px;border-radius:50%;background:var(--ivory);fill:none;stroke:var(--sea);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sl svg path{fill:var(--sea);stroke:none}
+.sl svg .dotf{fill:var(--sea);stroke:none}
+.sl span{display:grid;font-size:15px;font-weight:500;line-height:1.2}
+.sl small{font-size:12px;font-weight:400;color:#C9D6CD}
+.social .fonts{font-size:13px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--grove);color:var(--ivory);padding:10px 18px;border-radius:999px;font-size:14px;transition:.25s;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -414,7 +424,14 @@ svg.mark{overflow:visible}
 
 <footer class="foot band"><div class="wrap">
 <div style="display:flex;align-items:center;gap:18px"><svg viewBox="0 0 940 1100" aria-hidden="true"><use href="#mark"/></svg><div><div class="word"><em>One</em>Collective</div><p style="margin-top:8px">Design system v1.0 · Designed by Suri Manekar · November 2026</p></div></div>
-<p>Fonts: Fraunces &amp; Inter (Google Fonts) · Palette: Coastal Grove</p>
+<div class="social">
+<p class="fl">Follow OneCollective</p>
+<div class="sl">
+<a href="https://www.instagram.com/onecollective.in/" target="_blank" rel="noopener" aria-label="OneCollective on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" class="dotf"/></svg><span>Instagram<small>@onecollective.in</small></span></a>
+<a href="https://www.facebook.com/profile.php?id=61596834747880" target="_blank" rel="noopener" aria-label="OneCollective on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5h-3c-2.5 0-4 1.7-4 4.2V11H7.5v3.5H10V21h3.5v-6.5H16.6l.5-3.5h-3.6V8.9c0-.6.3-.9.5-.9z"/></svg><span>Facebook<small>OneCollective</small></span></a>
+</div>
+<p class="fonts">Fonts: Fraunces &amp; Inter (Google Fonts) · Palette: Coastal Grove</p>
+</div>
 </div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

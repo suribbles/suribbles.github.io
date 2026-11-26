@@ -4,6 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OneCollective Design System</title>
+<link rel="artifact-thumbnail" href="thumb.jpg">
+<meta name="description" content="OneCollective design system and brand guidelines by Suri Manekar: the Three Feathers logo, Coastal Grove colour palette, Fraunces and Inter typography, components and Instagram templates for GoodCrowd, GoodThread and GoodBlend.">
+<meta name="keywords" content="OneCollective, design system, brand guidelines, brand identity, logo, Three Feathers, Coastal Grove palette, Fraunces, Inter, typography, colour palette, GoodCrowd, GoodThread, GoodBlend, wellness brand, fitness workshops, yoga, eco workout wear, plastic-free activewear, healthy smoothies, Instagram templates, Suri Manekar">
+<meta name="author" content="Suri Manekar">
+<meta name="theme-color" content="#0F4D46">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OneCollective">
+<meta property="og:title" content="OneCollective Design System &amp; Brand Guidelines">
+<meta property="og:description" content="Rooted wellbeing: move, wear, nourish. Logo, colour, typography, components and Instagram templates for OneCollective, by Suri Manekar.">
+<meta property="og:image" content="thumb.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="OneCollective design system cover: the Three Feathers logo on Sea Green">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OneCollective Design System &amp; Brand Guidelines">
+<meta name="twitter:description" content="Rooted wellbeing: move, wear, nourish. Logo, colour, typography and templates by Suri Manekar.">
+<meta name="twitter:image" content="thumb.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -45,8 +62,8 @@ svg.mark{overflow:visible}
 .nav a{flex:none;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;border-radius:999px;min-height:44px;display:flex;align-items:center}
 .nav a:hover{color:var(--head);background:var(--alt)}
 .nav a:focus-visible,button:focus-visible{outline:2px solid var(--head);outline-offset:2px}
-@media(max-width:900px){.bar{position:static}}
-@media(max-width:640px){.bar .wrap{flex-wrap:wrap;gap:4px}.nav{margin-left:-12px;width:calc(100% + 12px)}}
+.bar{box-shadow:0 1px 0 rgba(15,77,70,.04);-webkit-backdrop-filter:saturate(1.2) blur(8px);backdrop-filter:saturate(1.2) blur(8px);background:color-mix(in srgb,var(--bg) 92%,transparent)}
+@media(max-width:640px){.bar .wrap{gap:10px;padding:6px 0 6px 16px}.brand{font-size:18px;gap:8px}.brand svg{width:22px;height:26px}.nav{flex:1;margin-left:0;padding-right:12px;mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 24px),transparent)}.nav a{padding:10px 10px;font-size:14px}html{scroll-padding-top:64px}}
 
 /* hero */
 .hero{background:var(--sea);color:var(--ivory);position:relative;overflow:hidden}
@@ -198,6 +215,55 @@ svg.mark{overflow:visible}
 .foot .word{color:var(--ivory);font-size:40px}
 .foot p{color:#C9D6CD;font-size:14px}
 .foot svg{width:64px;height:75px}
+
+/* phone */
+@media(max-width:600px){
+ body{font-size:16px}
+ .band{padding:44px 18px}
+ .head{margin-bottom:24px}
+ .hero .wrap{gap:28px}
+ .disc{max-width:240px}
+ .hero .tag{letter-spacing:.28em;font-size:12px;margin-top:20px}
+ .hero .meta{flex-direction:column;gap:4px;margin-top:24px}
+ .idea{gap:20px;margin-bottom:24px}
+ .sub{min-height:0;padding:22px}
+ .tile{padding:22px}
+ .t-hero svg,.t-sea svg{width:112px;height:131px}
+ .t-hero .word,.t-sea .word{font-size:36px!important}
+ .t-h .row{flex-direction:column;align-items:flex-start;gap:14px}
+ .t-h svg{width:56px;height:66px}
+ .mini{letter-spacing:.26em}
+ .sw{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .card{border-radius:22px}
+ .field{min-height:132px;padding:16px;gap:12px}
+ .field .nm{font-size:20px}
+ .field .aa{font-size:30px;flex-direction:column;align-items:flex-start;gap:4px}
+ .field .aa small{font-size:11px}
+ .info{padding:12px 16px 14px;font-size:13px}
+ .info .r{flex-direction:column;align-items:flex-start;gap:8px}
+ .hex{min-height:44px}
+ .ratio{height:64px;border-radius:20px}
+ .ratio div{font-size:11px;padding:8px}
+ .ratio .lg2{display:none}
+ .inks{grid-template-columns:1fr}
+ .rules{grid-template-columns:1fr;gap:14px}
+ .sp{padding:24px;min-height:0}
+ .sp .glyphs{font-size:17px}
+ .weights{font-size:17px}
+ .st{padding:16px 20px}
+ .box{padding:22px}
+ .sp-row{grid-template-columns:72px minmax(0,1fr) 44px;font-size:13px}
+ .rad{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .rad div{aspect-ratio:auto;height:84px;font-size:13px}
+ .lock{padding:16px}
+ .lock .word{font-size:22px}
+ .posts{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:18px;gap:14px;margin:0 -18px;padding:0 18px 8px;scrollbar-width:none}
+ .posts>div{flex:0 0 78%;scroll-snap-align:start}
+ .swipe{display:block!important}
+ .vo{gap:14px}
+ .foot .word{font-size:32px}
+}
+.swipe{display:none;font-size:13px;color:var(--muted);margin-top:12px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--grove);color:var(--ivory);padding:10px 18px;border-radius:999px;font-size:14px;transition:.25s;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -262,8 +328,8 @@ svg.mark{overflow:visible}
 <div class="head"><span class="n">Colour</span><h2>Coastal Grove: muted natural tones, one sunlit accent</h2><p class="lede">Let Ivory and Sea Green do most of the work. Eucalyptus, Dune and Driftwood are texture. Ochre is sunlight: small, deliberate and memorable. Tap a code to copy it.</p></div>
 <div class="sw" id="sw"></div>
 <div class="ratio" aria-label="Usage ratio">
-<div style="flex:60;background:var(--ivory);color:var(--grove)">Ivory 60</div>
-<div style="flex:25;background:var(--sea);color:var(--ivory)">Sea Green 25</div>
+<div style="flex:60;background:var(--ivory);color:var(--grove)"><span class="lg2">Ivory&nbsp;</span>60</div>
+<div style="flex:25;background:var(--sea);color:var(--ivory)"><span class="lg2">Sea Green&nbsp;</span>25</div>
 <div style="flex:4;background:var(--euc);color:var(--grove)"></div><div style="flex:3;background:var(--dune);color:var(--grove)"></div><div style="flex:3;background:var(--drift);color:var(--grove)"></div>
 <div style="flex:5;background:var(--ochre);color:var(--grove)">5</div>
 </div>
@@ -305,7 +371,7 @@ svg.mark{overflow:visible}
 <div class="sr">
 <div class="box"><h3 style="margin-bottom:12px">Spacing</h3><div id="spc"></div></div>
 <div class="box"><h3 style="margin-bottom:12px">Radius</h3>
-<div class="rad"><div style="border-radius:8px">sm · 8</div><div style="border-radius:16px">md · 16</div><div style="border-radius:32px">lg · 32</div><div style="border-radius:999px;justify-content:center;align-items:center">pill</div></div>
+<div class="rad"><div style="border-radius:8px">sm&nbsp;·&nbsp;8</div><div style="border-radius:16px">md&nbsp;·&nbsp;16</div><div style="border-radius:32px">lg&nbsp;·&nbsp;32</div><div style="border-radius:999px;justify-content:center;align-items:center">pill</div></div>
 <p class="cap" style="font-size:14px;color:var(--muted);margin-top:16px">Instagram safe margin: 64px on the 1080 canvas. Text never closer to any edge.</p></div>
 </div>
 </div></section>
@@ -331,6 +397,7 @@ svg.mark{overflow:visible}
 <div><div class="post" style="background:var(--euc);color:var(--grove)"><div class="pi"><span class="pl">GoodBlend · Ingredient</span><div style="font-family:var(--disp);font-style:italic;font-size:26cqw;line-height:.9;letter-spacing:-.03em;color:var(--sea);margin-top:5cqw">Mango</div><h3 class="ph" style="color:var(--grove);margin-top:auto">Mango, oats<br>&amp; dahi.</h3><p class="pb" style="margin-top:3cqw">Seasonal fruit, blended fresh every morning.</p></div></div><p class="pcap">Ingredient · GoodBlend</p></div>
 <div><div class="post" style="background:var(--dune);color:var(--grove)"><div class="pi"><span class="pl">GoodThread · Fabric story</span><span style="position:absolute;right:8.9cqw;top:8.9cqw;font-family:var(--disp);font-style:italic;font-size:4cqw">01</span><div style="margin-top:4cqw;height:46cqw;border-radius:3cqw;background:var(--drift);background-image:repeating-linear-gradient(0deg,transparent 0 8.6cqw,rgba(220,204,178,.7) 8.6cqw 8.9cqw),repeating-linear-gradient(90deg,transparent 0 16cqw,rgba(10,47,43,.18) 16cqw 16.3cqw)"></div><h3 class="ph" style="color:var(--sea);margin-top:auto">Made to <em>breathe.</em></h3><p class="pb" style="margin-top:3cqw">Natural fibre, no plastic. Here's how it's made →</p></div></div><p class="pcap">Fabric story · GoodThread</p></div>
 </div>
+<p class="swipe">Swipe to see all four →</p>
 </div></section>
 
 <section class="band" id="voice" style="background:var(--alt)"><div class="wrap">
